@@ -1,0 +1,101 @@
+@import "_vars";
+@import "compass/css3/border-radius";
+@import "compass/css3/user-interface";
+
+$header-z-index: 100;
+$header-background-color: #fff;
+$icon-dimensions: 27px;
+
+header > .header-entries {
+	width: 100%;
+	background-color: $header-background-color;
+	height: $header-height;
+	z-index: $header-z-index;
+	position: relative;
+
+	a, a:hover {
+		color: #000;
+	}
+
+	.header-separator {
+		background: url(/images/header-separator.png?embed) repeat-y center;
+		height: $header-height;
+		width: 2px;
+		float: left;
+	}
+
+	.header-entry:hover {
+		opacity: .8;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+		filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+	}
+
+	.header-entry {
+		float: left;
+		background-color: $header-background-color;
+		text-align: center;
+		height: $header-height;
+		line-height: $header-height;
+		padding-right: 12px;
+		padding-left: 12px;
+		opacity: .65;
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=65)";
+		filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=65);
+		cursor: pointer;
+		@include user-select(none);
+
+		svg, img {
+			width: $icon-dimensions;
+			height: $icon-dimensions;
+			float: left;
+			margin-top: 9px;
+		}
+
+		.label {
+			font-weight: 300;
+			font-size: 18px;
+			padding-left: 8px;
+		}
+	}
+}
+
+
+header > .search-dropdown {
+	position: absolute;
+	top: $header-height - 3;
+	right: 0px;
+	height: $header-height;
+	z-index: $header-z-index - 1;
+
+	.header-right {
+		display: inline-block;
+		background-color: #fff;
+		padding: 13px 9px 9px 9px;
+		@include border-radius(0px 0px 0px 5px);
+	}
+
+	.search-bar {
+		.search-type.short {
+			display:inline;
+		}
+	}
+	.search-bar.search-by-location {
+		input {
+			width: 210px;
+		}
+	}
+	.search-bar.search-by-name {
+		input {
+			width: 230px;
+		}
+	}
+}
+
+@media all and (max-width: $mobile-width) {
+}
+
+@media all and (max-width: $mobile-width) {
+	header .label {
+		display: none; /* Disables the text in the header entries */
+	}
+}

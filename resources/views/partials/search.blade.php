@@ -1,0 +1,23 @@
+<article class="search-page" data-meta-description="Results for search query.">
+	<div data-ui-if="results &amp;&amp; results.length > 0">
+		<h1 class="did-you-mean">Did you mean?</h1>
+		<ul class="entry-list">
+			<li data-ng-repeat='result in results | orderBy:"hike.name"'>
+				<a href='/hikes/{{result.hike.string_id}}'>
+					<div class="entry">
+						<img data-ui-if="result.hike.photo_facts" data-ng-src="{{config.hikeImagesPath}}/{{result.hike.photo_facts.string_id}}-thumb-tiny.jpg" alt="{{result.hike.photo_facts.alt}}" />
+						<div data-ui-if="!result.hike.photo_facts" class="img-placeholder"></div>
+						<div class="text">
+							<h2>{{result.hike.name}}</h2>
+							<h3>{{result.hike.locality}}</h3>
+						</div>
+					</div>
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class="no-results" data-ui-if="results &amp;&amp; results.length == 0">
+		<h1 class="unable-to-find">Unable to find hike: {{query}}</h1>
+		<p>If you want, you can <span data-fancybox=".add-link"><a class="add-link" href="javascript:;" data-fancybox-href="#add-page">add it</a></span>. Or check out the <a href="/discover">Discover</a> / <a href="/map">Map</a> tabs.</p>
+	</div>
+</article>

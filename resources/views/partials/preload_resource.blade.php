@@ -1,0 +1,1 @@
+<div data-preload-resource='<% 1 %>'><% 1 %></div>

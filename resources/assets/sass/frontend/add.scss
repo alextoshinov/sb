@@ -1,0 +1,118 @@
+@import "_vars";
+@import "_mixins";
+
+.add-page-container {
+	position: fixed;
+	width: 100%;
+	height: 100%; 
+	top: 0;
+}
+
+.add-page {
+	#distance, #elevationMax, #elevationGain {
+		width: 71px;
+	}
+
+	div {
+		display: inline-block;
+	}
+
+	#latitude, #longitude {
+		margin-top: 0px;
+		width: 108px;
+		margin-top: 0px;
+		margin-right: 5px;
+		display: inline;
+	}
+
+	.latitude-and-longitude {
+		padding-top: 2px;
+	}
+
+	.units {
+		line-height: 45px;
+		float: left;
+		margin-left: 5px;
+		cursor: pointer;
+	}
+
+	.gpx {
+		margin-top: 10px;
+		font-size: 13px;
+		width: 100%;
+		text-align: center;
+
+		a {
+			cursor: pointer;
+		}
+	}
+
+	.error {
+		font-weight: bold;
+		font-size: 13px;
+		line-height: 18px;
+		padding-top: 20px;
+		padding-left: 10px;
+		padding-bottom: 10px;
+		max-width: 330px;
+	}
+
+	.locate-btn {
+		float: left;
+		width: 41px;
+		height: 41px;
+		padding: 10px;
+		svg, img {
+			opacity: .65;
+			width: 20px;
+			height: 20px;
+		}
+	}
+	
+	@media all and (max-width: $mobile-width) { 
+		.error {
+			padding-top: 10px;
+			max-width: 250px;
+			font-size: 13px;
+		}
+
+		#latitude, #longitude {
+			width: 105px;
+			margin-right: 5px;
+			display: inline;
+		}
+
+		.locate-btn {
+			width: 48px;
+			height: 48px;
+		}
+	}
+}
+
+.add-page-map {
+	position: absolute;
+	width: 100%;
+	top: 0;
+	bottom: 0;
+	z-index: 9000;
+
+	@media all and (max-width: 800px) {
+		.banner {
+			text-align: left;
+		}
+	}
+
+	@media all and (max-width: $mobile-width) {	
+		.banner-extra-text {
+			display: none;
+		}
+	}
+
+	.map-container {
+		position: absolute;
+		width: 100%;
+		top: $banner-height;
+		bottom: 0;
+		background-color: #EEE;
+	}
+}

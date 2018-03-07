@@ -1,0 +1,3057 @@
+//colors
+$white: white;
+$black_50: rgba(0,0,0,0.5);
+$color_gallery_approx: #eee;
+$color_mountain_mist_approx: #999;
+$color_woodsmoke_approx: #111;
+$color_alto_approx: #ddd;
+$color_desert_storm_approx: #f8f8f8;
+$color_mine_shaft_approx: #333333;
+$color_tundora_approx: #444;
+$color_fuscous_gray_approx: #555555;
+$color_curious_blue_approx: #3399cc;
+$color_bahama_blue_approx: #006699;
+$black: #000;
+$black_60: rgba(0,0,0,0.6);
+$color_tapa_approx: #777;
+$color_gondola_40_approx: rgba(34,25,25,0.4);
+$color_flame_pea_approx: #eb593c;
+$color_romance_approx: #fefefe;
+$color_black_30_approx: rgba(1,1,1,0.3);
+$black_65: rgba(0,0,0,0.65);
+$color_celeste_approx: #ccc;
+$color_black_0.1_approx: rgba(1,1,1,0.001);
+$white_75: rgba(255,255,255,0.75);
+$color_wild_sand_approx: #f5f5f5;
+$color_mercury_approx: #e6e6e6;
+$color_silver_approx: #bfbfbf;
+$black_10: rgba(0,0,0,0.1);
+$black_25: rgba(0,0,0,0.25);
+$color_pink_swan_approx: #bbbbbb;
+$color_delta_approx: #a2a2a2;
+$white_20: rgba(255,255,255,0.2);
+$black_5: rgba(0,0,0,0.05);
+$black_15: rgba(0,0,0,0.15);
+$color_pumice_approx: #c5c5c5;
+$color_science_blue_approx: #006dcc;
+$color_lochmara_approx: #0088cc;
+$color_cobalt_approx: #0044cc;
+$color_resolution_blue_approx: #002a80;
+$smalt: #003399;
+$color_sea_buckthorn_approx: #faa732;
+$color_casablanca_approx: #fbb450;
+$color_pizazz_approx: #f89406;
+$color_mai_tai_approx: #ad6704;
+$color_tahiti_gold_approx: #df8505;
+$color_indochine_approx: #c67605;
+$color_carnation_approx: #ee5f5b;
+$color_well_read_approx: #bd362f;
+$color_crown_of_thorns_approx: #802420;
+$color_roof_terracotta_approx: #a9302a;
+$color_burnt_umber_approx: #942a25;
+$color_fern_approx: #5bb75b;
+$color_fruit_salad_approx: #51a351;
+$color_killarney_approx: #387038;
+$color_hippie_green_approx: #499249;
+$color_fern_green_approx: #408140;
+$color_shakespeare_approx: #49afcd;
+$color_viking_approx: #5bc0de;
+$color_boston_blue_approx: #2f96b4;
+$color_blumine_approx: #1f6377;
+$color_astral_approx: #2a85a0;
+$color_calypso_approx: #24748c;
+$color_tuatara_approx: #363636;
+$color_log_cabin_approx: #222222;
+$color_bunker_approx: #151515;
+$color_cod_gray_approx: #080808;
+$color_orient_approx: #005580;
+$color_alabaster_approx: #f9f9f9;
+$black_82: rgba(0,0,0,0.82);
+$black_80: rgba(0,0,0,0.8);
+$color_shark_approx: #242424;
+$white_10: rgba(255,255,255,0.1);
+$black_30: rgba(0,0,0,0.3);
+$color_nobel_approx: #b3b3b1;
+$black_27: rgba(0,0,0,0.27);
+$black_6: rgba(0,0,0,0.06);
+
+//fonts
+$font_0: Roboto;
+$font_1: Arial;
+$font_2: sans-serif;
+$font_3: facitweb;
+$font_4: Helvetica Neue;
+$font_5: Helvetica;
+
+//data-uris
+$data_uri_0: "data:image/png;base64,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";
+
+//urls
+$url_0: url(http://assets.hike.io/about-page-images/kilimanjaro-from-meru.jpg);
+$url_1: url(http://assets.hike.io/about-page-images/the-narrows-wall.jpg);
+$url_2: url(http://assets.hike.io/about-page-images/mawenzi-tarn-at-night.jpg);
+$url_3: url(http://assets.hike.io/about-page-images/rachel-lake.jpg);
+$url_4: url(http://assets.hike.io/about-page-images/hawaii-oahu-north-shore.jpg);
+$url_5: url(http://assets.hike.io/about-page-images/kilimanjaro-from-meru-mobile.jpg);
+$url_6: url(http://assets.hike.io/about-page-images/the-narrows-wall-mobile.jpg);
+$url_7: url(http://assets.hike.io/about-page-images/mawenzi-tarn-at-night-mobile.jpg);
+$url_8: url(http://assets.hike.io/about-page-images/rachel-lake-mobile.jpg);
+$url_9: url(http://assets.hike.io/about-page-images/hawaii-oahu-north-shore-mobile.jpg);
+$url_10: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAAyCAMAAABBEvq7AAAAllBMVEW8u7v///+9ury8vLO8u7q3vLi2vLu7uLy6u7W7t7uzub23t7a6tri5tbu3t7S5s7q0s7K5s7e4tLG1tLe3s6+3srWxs7azsrO2r7SyrbevsbGor7S0q7SwrbSxq7axrbOqr7avrLSor7CosK+vrLKvrK+sr7KsrrOrr7Kxrq+ts6+rsLavsK+xs7estbKzs7i2srC0tbhLeLA/AAAAFklEQVQIW2NgYGRiYmBipBgxYIhQgAAsTwCVwGLv5gAAAABJRU5ErkJggg==);
+$url_11: url(http://assets.hike.io/landing-page-images/the-narrows.jpg);
+$url_12: url(http://assets.hike.io/landing-page-images/the-narrows-mobile.jpg);
+$url_13: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAAAAABzQ+pjAAAAFElEQVQIHWP885uD8TsrM+N/BgYAHvkEAYOGd70AAAAASUVORK5CYII=);
+$url_14: url(data:image/png;base64,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);
+$url_15: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAMAAABHPGVmAAADAFBMVEX///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////+/LkhhAAAA/3RSTlMAJElrkqu/0enZjxMvZqP44B86g8z9/vv5+s0CGHDH9/T2/EUulOry9XwsnvHw8+5g4uzt7yKv61no1pDn1KxfMxcUuuXkqGMm164RNOPm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);
+$url_16: url(data:image/png;base64,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);
+$url_17: url(blank.gif);
+
+//@extend-elements
+//original selectors
+//html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video
+%extend_1 {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+//original selectors
+//.about-page .sub-page h2, .about-page .sub-page h3
+%extend_2 {
+	text-align: center;
+	color: $white;
+	vertical-align: middle;
+	//Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	text-shadow: 1px 1px 3px $black_50;
+}
+
+//original selectors
+//.add-page #latitude, .add-page #longitude
+%extend_3 {
+	width: 105px;
+	margin-right: 5px;
+	display: inline;
+}
+
+//original selectors
+//.add-page #latitude, .add-page #longitude
+%extend_4 {
+	width: 108px;
+	margin-top: 0;
+	margin-right: 5px;
+	display: inline;
+}
+
+//original selectors
+//.add-page .locate-btn svg, .add-page .locate-btn img
+%extend_5 {
+	opacity: .65;
+	width: 20px;
+	height: 20px;
+}
+
+//original selectors
+//.entry-edit-page .delete-photo-icon, .entry-edit-page .delete-map-icon
+%extend_6 {
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 10;
+	padding: 3px 8px;
+	cursor: pointer;
+	font-size: 30px;
+	line-height: 30px;
+	color: $white;
+	//Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	text-shadow: 1px 1px 3px $color_woodsmoke_approx;
+	//Instead of the line below you could use @include user-select($select)
+	user-select: none;
+}
+
+//original selectors
+//.overview-facts .page-curl img, .overview-facts .page-curl .img-div
+%extend_7 {
+	width: 122px;
+	height: 122px;
+	float: left;
+}
+
+//original selectors
+//ul.entry-list li img, ul.entry-list li .img-placeholder
+%extend_8 {
+	position: absolute;
+	top: 50%;
+	left: 15px;
+	margin-top: -35px;
+	height: 70px;
+	width: 70px;
+	float: left;
+	margin-right: 10px;
+	background-color: $color_gallery_approx;
+}
+
+//original selectors
+//.overview-facts .page-curl img, .overview-facts .page-curl .img-div
+%extend_9 {
+	width: 260px;
+	height: 260px;
+	margin-bottom: 10px;
+}
+
+//original selectors
+//.overview-facts table svg, .overview-facts table img.external-link
+%extend_10 {
+	width: 12px;
+	height: 12px;
+	max-width: 12px;
+	max-height: 12px;
+	margin: 0;
+	padding: 0;
+	margin-left: 4px;
+	display: inline;
+}
+
+//original selectors
+//.overview-facts table .hike-name, .overview-facts table .hike-locality, .overview-facts table .hike-distance, .overview-facts table .hike-elevation-gain, .overview-facts table .hike-elevation-max, .overview-facts table .hike-latitude, .overview-facts table .hike-longitude, .overview-facts table .hike-permit
+%extend_11 {
+	min-height: 16px;
+	min-width: 10px;
+	display: block;
+	float: left;
+	max-width: 160px;
+}
+
+//original selectors
+//header >.header-entries .header-entry svg, header >.header-entries .header-entry img
+%extend_12 {
+	width: 27px;
+	height: 27px;
+	float: left;
+	margin-top: 9px;
+}
+
+//original selectors
+//div, p
+%extend_13 {
+	font-weight: 300;
+	font-size: 17px;
+	color: $color_fuscous_gray_approx;
+}
+
+//original selectors
+//.modal-input-dialog form input[type=text], .modal-input-dialog form input[type=number], .modal-input-dialog form textarea
+%extend_14 {
+	display: inline-block;
+	float: left;
+	border: 1px solid $color_black_30_approx;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 2px / 2px;
+	font-size: 18px;
+	font-weight: 200;
+	padding: 7px;
+	width: 265px;
+	resize: none;
+}
+
+//original selectors
+//.clearfix:before, .clearfix:after
+%extend_15 {
+	display: table;
+	content: "";
+	line-height: 0;
+}
+
+//original selectors
+//.btn:hover, .btn:active, .btn.active, .btn.disabled, .btn[disabled]
+%extend_16 {
+	color: $color_mine_shaft_approx;
+	background-color: $color_mercury_approx;
+	*background-color: $color_alto_approx;
+}
+
+//original selectors
+//.btn.active, .btn:active
+%extend_17 {
+	background-image: none;
+	outline: 0;
+	//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	box-shadow: inset 0 2px 4px $black_15,0 1px 2px $black_5;
+}
+
+//original selectors
+//.btn.disabled, .btn[disabled]
+%extend_18 {
+	cursor: default;
+	background-image: none;
+	opacity: 0.65;
+	filter: alpha(opacity=65);
+	//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	box-shadow: none;
+}
+
+//original selectors
+//.btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled]
+%extend_19 {
+	color: $white;
+	background-color: $color_cobalt_approx;
+	*background-color: $color_cobalt_approx;
+}
+
+//original selectors
+//.btn-warning:hover, .btn-warning:active, .btn-warning.active, .btn-warning.disabled, .btn-warning[disabled]
+%extend_20 {
+	color: $white;
+	background-color: $color_pizazz_approx;
+	*background-color: $color_tahiti_gold_approx;
+}
+
+//original selectors
+//.btn-danger:hover, .btn-danger:active, .btn-danger.active, .btn-danger.disabled, .btn-danger[disabled]
+%extend_21 {
+	color: $white;
+	background-color: $color_well_read_approx;
+	*background-color: $color_roof_terracotta_approx;
+}
+
+//original selectors
+//.btn-success:hover, .btn-success:active, .btn-success.active, .btn-success.disabled, .btn-success[disabled]
+%extend_22 {
+	color: $white;
+	background-color: $color_fruit_salad_approx;
+	*background-color: $color_hippie_green_approx;
+}
+
+//original selectors
+//.btn-info:hover, .btn-info:active, .btn-info.active, .btn-info.disabled, .btn-info[disabled]
+%extend_23 {
+	color: $white;
+	background-color: $color_boston_blue_approx;
+	*background-color: $color_astral_approx;
+}
+
+//original selectors
+//.btn-inverse:hover, .btn-inverse:active, .btn-inverse.active, .btn-inverse.disabled, .btn-inverse[disabled]
+%extend_24 {
+	color: $white;
+	background-color: $color_log_cabin_approx;
+	*background-color: $color_bunker_approx;
+}
+
+//original selectors
+//.btn-link, .btn-link:active, .btn-link[disabled]
+%extend_25 {
+	background-color: transparent;
+	background-image: none;
+	//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	box-shadow: none;
+}
+
+//original selectors
+//.fancybox-wrap, .fancybox-skin, .fancybox-outer, .fancybox-inner, .fancybox-image, .fancybox-wrap iframe, .fancybox-wrap object, .fancybox-nav, .fancybox-nav span, .fancybox-tmp
+%extend_26 {
+	padding: 0;
+	margin: 0;
+	border: 0;
+	outline: none;
+	vertical-align: top;
+}
+
+//original selectors
+//.fancybox-image, .fancybox-iframe
+%extend_27 {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+//original selectors
+//.medium-toolbar-arrow, .medium-toolbar-arrow-under:after, .medium-toolbar-arrow-over:before
+%extend_28 {
+	content: "";
+	display: block;
+	position: absolute;
+	left: 50%;
+	margin-left: -8px;
+	width: 0;
+	height: 0;
+	border-style: solid;
+}
+
+//original selectors
+//.page-curl:before, .page-curl:after
+%extend_29 {
+	background: none;
+	bottom: 12px;
+	//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	box-shadow: 0 10px 12px $black_50;
+	content: "";
+	height: 10px;
+	left: 12px;
+	position: absolute;
+	width: 40%;
+	z-index: -1;
+	//Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+	transform: skew(-4deg) rotate(-4deg);
+}
+
+//original selectors
+//.shadow-bottom:before, .shadow-bottom:after
+%extend_30 {
+	top: auto;
+	bottom: 12px;
+	//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	box-shadow: 0 10px 12px $black_50;
+}
+
+
+html {
+	@extend %extend_1;
+	height: 100%;
+	&.touch a:hover {
+		text-decoration: none;
+	}
+}
+body {
+	@extend %extend_1;
+	line-height: 1;
+	position: relative;
+	height: 100%;
+	min-height: 450px;
+	min-width: 450px;
+	margin: 0;
+	font-smoothing: antialiased;
+	background-image: $url_13;
+	font-family: $font_3, $font_2;
+}
+div {
+	@extend %extend_1;
+	@extend %extend_13;
+}
+span {
+	@extend %extend_1;
+}
+applet {
+	@extend %extend_1;
+}
+object {
+	@extend %extend_1;
+}
+iframe {
+	@extend %extend_1;
+}
+h1 {
+	@extend %extend_1;
+	color: $color_mine_shaft_approx;
+	font-size: 48px;
+	font-weight: bold;
+}
+h2 {
+	@extend %extend_1;
+	color: $color_mine_shaft_approx;
+	font-size: 36px;
+	font-weight: bold;
+}
+h3 {
+	@extend %extend_1;
+	color: $color_mine_shaft_approx;
+	font-size: 18px;
+	line-height: 28px;
+	font-weight: bold;
+}
+h4 {
+	@extend %extend_1;
+	font-size: 12px;
+	line-height: 16px;
+}
+h5 {
+	@extend %extend_1;
+}
+h6 {
+	@extend %extend_1;
+}
+p {
+	@extend %extend_1;
+	@extend %extend_13;
+	line-height: 28px;
+}
+blockquote {
+	@extend %extend_1;
+	quotes: none;
+	padding: 10px 15px;
+	margin-bottom: 10px;
+	font-size: 14px;
+	line-height: 22px;
+	border-left: 5px solid $color_alto_approx;
+	&:before {
+		content: "";
+		content: none;
+	}
+	&:after {
+		content: "";
+		content: none;
+	}
+}
+pre {
+	@extend %extend_1;
+}
+a {
+	@extend %extend_1;
+	color: $color_curious_blue_approx;
+	text-decoration: none;
+	&:hover {
+		color: $color_bahama_blue_approx;
+		text-decoration: underline;
+	}
+	img {
+		border: none;
+	}
+}
+abbr {
+	@extend %extend_1;
+}
+acronym {
+	@extend %extend_1;
+}
+address {
+	@extend %extend_1;
+}
+big {
+	@extend %extend_1;
+}
+cite {
+	@extend %extend_1;
+}
+code {
+	@extend %extend_1;
+}
+del {
+	@extend %extend_1;
+}
+dfn {
+	@extend %extend_1;
+}
+em {
+	@extend %extend_1;
+	font-style: italic;
+}
+img {
+	@extend %extend_1;
+	display: block;
+	font-size: 10px !important;
+	color: rgba(0,0,0,0) !important;
+}
+ins {
+	@extend %extend_1;
+}
+kbd {
+	@extend %extend_1;
+}
+q {
+	@extend %extend_1;
+	quotes: none;
+	&:before {
+		content: "";
+		content: none;
+	}
+	&:after {
+		content: "";
+		content: none;
+	}
+}
+s {
+	@extend %extend_1;
+}
+samp {
+	@extend %extend_1;
+}
+small {
+	@extend %extend_1;
+}
+strike {
+	@extend %extend_1;
+}
+strong {
+	@extend %extend_1;
+	font-weight: bold;
+}
+sub {
+	@extend %extend_1;
+}
+sup {
+	@extend %extend_1;
+}
+tt {
+	@extend %extend_1;
+}
+var {
+	@extend %extend_1;
+}
+b {
+	@extend %extend_1;
+	font-weight: bold;
+}
+u {
+	@extend %extend_1;
+}
+i {
+	@extend %extend_1;
+	font-style: italic;
+}
+center {
+	@extend %extend_1;
+}
+dl {
+	@extend %extend_1;
+}
+dt {
+	@extend %extend_1;
+}
+dd {
+	@extend %extend_1;
+}
+ol {
+	@extend %extend_1;
+	list-style: none;
+}
+ul {
+	@extend %extend_1;
+	list-style: none;
+	&.entry-list {
+		overflow: hidden;
+		li {
+			display: block;
+			border-bottom: 1px solid $color_alto_approx;
+			position: relative;
+			img {
+				@extend %extend_8;
+			}
+			.img-placeholder {
+				@extend %extend_8;
+			}
+			.entry {
+				width: 100%;
+				height: 100%;
+			}
+			.text {
+				padding: 20px;
+				margin-left: 75px;
+				h3 {
+					font-size: 16px;
+					line-height: 20px;
+				}
+			}
+			&:hover {
+				background-color: $color_desert_storm_approx;
+			}
+			a:hover {
+				text-decoration: none;
+			}
+		}
+	}
+}
+li {
+	@extend %extend_1;
+	list-style-type: disc;
+}
+fieldset {
+	@extend %extend_1;
+}
+form {
+	@extend %extend_1;
+}
+label {
+	@extend %extend_1;
+}
+legend {
+	@extend %extend_1;
+}
+table {
+	@extend %extend_1;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+caption {
+	@extend %extend_1;
+}
+tbody {
+	@extend %extend_1;
+}
+tfoot {
+	@extend %extend_1;
+}
+thead {
+	@extend %extend_1;
+}
+tr {
+	@extend %extend_1;
+}
+th {
+	@extend %extend_1;
+}
+td {
+	@extend %extend_1;
+}
+article {
+	@extend %extend_1;
+	display: block;
+}
+aside {
+	@extend %extend_1;
+	display: block;
+}
+canvas {
+	@extend %extend_1;
+}
+details {
+	@extend %extend_1;
+	display: block;
+}
+embed {
+	@extend %extend_1;
+}
+figure {
+	@extend %extend_1;
+	display: block;
+}
+figcaption {
+	@extend %extend_1;
+	display: block;
+}
+footer {
+	@extend %extend_1;
+	display: block;
+	position: absolute;
+	bottom: 0;
+	padding: 20px;
+	width: 100%;
+	a {
+		float: right;
+		color: $color_tapa_approx;
+		display: inline-block;
+		margin-left: 20px;
+		&:hover {
+			color: $color_tapa_approx;
+		}
+	}
+}
+header {
+	@extend %extend_1;
+	display: block;
+	> {
+		.header-entries {
+			width: 100%;
+			background-color: $white;
+			height: 45px;
+			z-index: 100;
+			position: relative;
+			a {
+				color: $black;
+				&:hover {
+					color: $black;
+				}
+			}
+			.header-separator {
+				background: $url_10 repeat-y center;
+				height: 45px;
+				width: 2px;
+				float: left;
+			}
+			.header-entry {
+				float: left;
+				background-color: $white;
+				text-align: center;
+				height: 45px;
+				line-height: 45px;
+				padding-right: 12px;
+				padding-left: 12px;
+				opacity: .65;
+				filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=65);
+				cursor: pointer;
+				//Instead of the line below you could use @include user-select($select)
+				user-select: none;
+				&:hover {
+					opacity: .8;
+					filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+				}
+				svg {
+					@extend %extend_12;
+				}
+				img {
+					@extend %extend_12;
+				}
+				.label {
+					font-weight: 300;
+					font-size: 18px;
+					padding-left: 8px;
+				}
+			}
+		}
+		.search-dropdown {
+			position: absolute;
+			top: 42px;
+			right: 0;
+			height: 45px;
+			z-index: 99;
+			.header-right {
+				display: inline-block;
+				background-color: $white;
+				padding: 13px 9px 9px;
+				//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+				border-radius: 0 0 0 5px;
+			}
+			.search-bar {
+				.search-type.short {
+					display: inline;
+				}
+				&.search-by-location input {
+					width: 210px;
+				}
+				&.search-by-name input {
+					width: 230px;
+				}
+			}
+		}
+	}
+}
+hgroup {
+	@extend %extend_1;
+	display: block;
+}
+menu {
+	@extend %extend_1;
+	display: block;
+}
+nav {
+	@extend %extend_1;
+	display: block;
+}
+output {
+	@extend %extend_1;
+}
+ruby {
+	@extend %extend_1;
+}
+section {
+	@extend %extend_1;
+	display: block;
+}
+summary {
+	@extend %extend_1;
+}
+time {
+	@extend %extend_1;
+}
+mark {
+	@extend %extend_1;
+}
+audio {
+	@extend %extend_1;
+}
+video {
+	@extend %extend_1;
+}
+@-o-keyframes rotate-fade {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+@-ms-keyframes rotate-fade {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+@-moz-keyframes rotate-fade {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+@-webkit-keyframes rotate-fade {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+@keyframes rotate-fade {
+	from {
+		//Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+		transform: rotate(-45deg);
+		opacity: 1;
+	}
+	to {
+		//Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+		transform: rotate(30deg);
+		opacity: 0;
+	}
+}
+.about-page {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 2;
+	.attribution-link {
+		display: inline;
+		top: auto;
+		bottom: 8px;
+		left: 8px;
+		opacity: .5;
+	}
+	.sub-page {
+		width: 100%;
+		height: 100%;
+		margin-bottom: 2px;
+		position: relative;
+		overflow-x: hidden;
+		overflow-y: hidden;
+		.shooting-star {
+			opacity: 1;
+			position: absolute;
+			background-image: url($data_uri_0);
+			background-repeat: no-repeat;
+			top: 15%;
+			left: 30%;
+			width: 144px;
+			height: 11px;
+			padding-bottom: 3000px;
+			//Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+			transform: rotate(-45deg);
+			&.animate {
+				animation-name: rotate-fade;
+				animation-fill-mode: forwards;
+				animation-duration: 1.5s;
+				animation-iteration-count: 1;
+				animation-timing-function: linear;
+			}
+		}
+		.text-container {
+			position: relative;
+			top: 43%;
+			left: 50%;
+			width: 520px;
+			margin-left: -260px;
+		}
+		h2 {
+			font-size: 56px;
+			padding-bottom: 7px;
+			@extend %extend_2;
+			a {
+				color: $white;
+				text-decoration: underline;
+			}
+		}
+		h3 {
+			font-size: 16px;
+			line-height: 22px;
+			@extend %extend_2;
+			a {
+				color: $white;
+				text-decoration: underline;
+			}
+		}
+	}
+	.description {
+		background: $url_0 no-repeat center bottom;
+		background-size: cover;
+	}
+	.free {
+		background: $url_1 no-repeat center bottom;
+		background-size: cover;
+	}
+	.hikes {
+		background: $url_2 no-repeat center bottom;
+		background-size: cover;
+		.text-container {
+			top: 38%;
+		}
+	}
+	.open {
+		background: $url_3 no-repeat center bottom;
+		background-size: cover;
+		.text-container {
+			top: 38%;
+		}
+	}
+	.edit {
+		background: $url_4 no-repeat center bottom;
+		background-size: cover;
+		.text-container {
+			top: 38%;
+		}
+	}
+}
+@media all and(max-width: 650px) {
+	.about-page {
+		.sub-page {
+			.text-container {
+				width: 380px;
+				margin-left: -190px;
+			}
+			h2 {
+				font-size: 40px;
+			}
+			h3 {
+				line-height: 20px;
+				font-size: 12px;
+			}
+		}
+		.description {
+			background: $url_5 no-repeat center bottom;
+			background-size: cover;
+		}
+		.free {
+			background: $url_6 no-repeat center bottom;
+			background-size: cover;
+		}
+		.hikes {
+			background: $url_7 no-repeat center bottom;
+			background-size: cover;
+		}
+		.open {
+			background: $url_8 no-repeat center bottom;
+			background-size: cover;
+		}
+		.edit {
+			background: $url_9 no-repeat center bottom;
+			background-size: cover;
+		}
+	}
+	.add-page {
+		.error {
+			padding-top: 10px;
+			max-width: 250px;
+			font-size: 13px;
+		}
+		#latitude {
+			@extend %extend_3;
+		}
+		#longitude {
+			@extend %extend_3;
+		}
+		.locate-btn {
+			width: 48px;
+			height: 48px;
+		}
+	}
+	.banner {
+		&.edit-banner {
+			text-align: left;
+		}
+		&.edit-banner-review .live-soon-msg {
+			display: none;
+		}
+	}
+	.entry-page {
+		.header-landscape {
+			.header-hike-name-with-image {
+				margin-top: -40px;
+				height: 40px;
+			}
+			h1 {
+				font-size: 35px;
+				line-height: 41px;
+			}
+		}
+		.overview-section {
+			margin-top: 10px !important;
+			.overview-description {
+				margin-top: 13px;
+				font-size: 16px;
+				line-height: 20px;
+			}
+		}
+		.map-section .map-container {
+			padding-bottom: 100%;
+		}
+	}
+	.index-page {
+		background: $url_12 no-repeat center bottom fixed;
+		background-size: cover;
+		.footer-banner {
+			height: 100px;
+			margin-top: -100px;
+			h1 {
+				font-size: 40px;
+			}
+			h2 {
+				font-size: 20px;
+			}
+		}
+		.content {
+			margin-top: 200px;
+		}
+	}
+	footer {
+		padding-right: 10px;
+		a {
+			margin-left: 10px;
+			h4 {
+				font-size: 11px;
+			}
+		}
+	}
+	.photo-metadata-string {
+		margin-bottom: -31px;
+		.separator {
+			display: none;
+		}
+		br {
+			display: inline;
+		}
+	}
+	.modal-input-dialog {
+		width: 400px;
+		margin: 25px 5px 5px;
+		form {
+			width: 400px;
+			input[type=text] {
+				font-size: 24px;
+			}
+			input[type=number] {
+				font-size: 24px;
+			}
+			textarea {
+				font-size: 24px;
+				height: 110px;
+			}
+			input[type=submit] {
+				margin-right: 25px;
+			}
+			label {
+				width: 100px;
+			}
+		}
+	}
+	.search-bar {
+		.search-type {
+			display: none;
+			&.short {
+				display: inline;
+				height: 50px;
+			}
+		}
+		.input-box {
+			input {
+				height: 50px;
+				font-size: 24px;
+				padding-right: 40px;
+			}
+			.search-input-button {
+				padding: 15px 12px 13px;
+				svg {
+					width: 20px;
+					height: 20px;
+				}
+				img {
+					width: 20px;
+					height: 20px;
+				}
+			}
+		}
+		.loading-spinner {
+			right: 10px;
+			width: 28px;
+			height: 28px;
+			background-size: 28px 28px;
+		}
+		&.search-by-location input {
+			width: 350px;
+		}
+		&.search-by-name input {
+			width: 370px;
+		}
+	}
+	.add-page-map .banner-extra-text {
+		display: none;
+	}
+	header .label {
+		display: none;
+	}
+	.photo-details-page label {
+		width: 110px !important;
+	}
+}
+.add-page-container {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+}
+.add-page {
+	#distance {
+		width: 71px;
+	}
+	#elevationMax {
+		width: 71px;
+	}
+	#elevationGain {
+		width: 71px;
+	}
+	div {
+		display: inline-block;
+	}
+	#latitude {
+		@extend %extend_4;
+	}
+	#longitude {
+		@extend %extend_4;
+	}
+	.latitude-and-longitude {
+		padding-top: 2px;
+	}
+	.units {
+		line-height: 45px;
+		float: left;
+		margin-left: 5px;
+		cursor: pointer;
+	}
+	.gpx {
+		margin-top: 10px;
+		font-size: 13px;
+		width: 100%;
+		text-align: center;
+		a {
+			cursor: pointer;
+		}
+	}
+	.error {
+		font-weight: bold;
+		font-size: 13px;
+		line-height: 18px;
+		padding-top: 20px;
+		padding-left: 10px;
+		padding-bottom: 10px;
+		max-width: 330px;
+	}
+	.locate-btn {
+		float: left;
+		width: 41px;
+		height: 41px;
+		padding: 10px;
+		svg {
+			@extend %extend_5;
+		}
+		img {
+			@extend %extend_5;
+		}
+	}
+}
+.add-page-map {
+	position: absolute;
+	width: 100%;
+	top: 0;
+	bottom: 0;
+	z-index: 9000;
+	.map-container {
+		position: absolute;
+		width: 100%;
+		top: 50px;
+		bottom: 0;
+		background-color: $color_gallery_approx;
+	}
+}
+@media all and(max-width: 800px) {
+	.photo-metadata-string {
+		font-size: 10px;
+		line-height: 13px;
+	}
+	.add-page-map .banner {
+		text-align: left;
+	}
+}
+.admin-page {
+	padding: 15px;
+	td {
+		padding: 10px;
+		max-width: 500px;
+		word-wrap: break-word;
+	}
+	tr:first-child td {
+		font-weight: bold;
+	}
+}
+.entry-edit-page {
+	.dashed-border {
+		border: 4px dashed $color_mountain_mist_approx;
+	}
+	img {
+		cursor: pointer;
+	}
+	.img-div {
+		cursor: pointer;
+	}
+	.delete-photo-icon {
+		@extend %extend_6;
+	}
+	.delete-map-icon {
+		@extend %extend_6;
+	}
+	.metadata-section {
+		float: left;
+		width: 100%;
+		padding-top: 10px;
+		.image-container {
+			position: relative;
+			width: 25%;
+		}
+		.placeholder-img {
+			width: 25%;
+		}
+		img {
+			width: 100%;
+		}
+		.img-div {
+			width: 100%;
+			height: 0;
+			padding-bottom: 100%;
+			background-position: center center;
+			background-size: cover;
+		}
+		.discover-explanation {
+			font-size: 14px;
+			padding-bottom: 5px;
+		}
+	}
+	.header-landscape h1 {
+		text-overflow: clip !important;
+	}
+	.map-section .dashed-border.map-container {
+		padding-bottom: 50%;
+	}
+}
+@media all and(max-width: 600px) {
+	.overview-facts {
+		width: 100%;
+		margin: 0;
+		float: none;
+		.image-container {
+			width: 122px;
+			margin-bottom: 0;
+		}
+		.page-curl {
+			img {
+				@extend %extend_7;
+			}
+			.img-div {
+				@extend %extend_7;
+			}
+		}
+		.permit {
+			.image-container {
+				width: 144px;
+			}
+			&.page-curl {
+				img {
+					width: 144px;
+					height: 144px;
+				}
+				.img-div {
+					width: 144px;
+					height: 144px;
+				}
+			}
+		}
+		> div {
+			padding: 13px 13px 20px 13px;
+			width: 92%;
+			position: relative;
+		}
+		table {
+			line-height: 18px;
+			margin-top: 0;
+			tr {
+				&:first-child {
+					display: none;
+				}
+				td {
+					&:first-child {
+						text-align: left;
+						margin-left: 15px;
+					}
+					&:nth-child(2) {
+						padding-left: 10px;
+						min-width: 120px;
+						width: 100%;
+					}
+				}
+			}
+			.hike-name {
+				max-width: none;
+			}
+			.hike-locality {
+				max-width: none;
+			}
+			.hike-distance {
+				max-width: none;
+			}
+			.hike-elevation-gain {
+				max-width: none;
+			}
+			.hike-elevation-max {
+				max-width: none;
+			}
+			.hike-latitude {
+				max-width: none;
+			}
+			.hike-longitude {
+				max-width: none;
+			}
+			.hike-permit {
+				max-width: none;
+			}
+		}
+	}
+	.entry-edit-page .metadata-section {
+		.image-container {
+			width: 33.333%;
+		}
+		.placeholder-img {
+			width: 33.333%;
+		}
+	}
+	.entry-page .photo-thumb-list .photo-thumb {
+		width: 33.333%;
+	}
+}
+@media all and(max-width: 900px) {
+	.banner.edit-banner-review {
+		text-align: left;
+	}
+}
+@media all and(max-width: 700px) {
+	.banner.edit-banner-review {
+		text-align: left;
+		h3 {
+			font-size: 15px;
+		}
+	}
+}
+.entry-page {
+	overflow-x: hidden;
+	width: 1024px;
+	margin-right: auto;
+	margin-left: auto;
+	.header-landscape {
+		position: relative;
+		height: 0;
+		padding-bottom: 33.33333%;
+		&.header-landscape-with-image {
+			height: auto;
+			padding-bottom: 0;
+		}
+		img {
+			width: 100%;
+			max-height: 341px;
+		}
+		.img-div {
+			width: 100%;
+			max-height: 341px;
+			height: 0;
+			padding-bottom: 33.33333%;
+			background-position: center center;
+			background-size: cover;
+			&.flipped {
+				position: absolute;
+				width: 33.33333%;
+				padding-bottom: 100%;
+				margin-left: 33.33333%;
+				margin-top: -33.33333%;
+				margin-bottom: -33.33333%;
+			}
+		}
+		.flipped-placeholder {
+			height: 0;
+			width: 100%;
+			padding-bottom: 33.33333%;
+		}
+		h1 {
+			font-size: 45px;
+			line-height: 55px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		.header-hike-name h1 {
+			padding-left: 10px;
+			position: relative;
+			margin-top: 10px;
+			margin-bottom: -10px;
+			color: $color_mine_shaft_approx;
+		}
+		.header-hike-name-with-image h1 {
+			color: $white;
+			padding-left: 10px;
+			position: absolute;
+			bottom: 10px;
+			width: 100%;
+			background-color: $black_50;
+			filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr="#60000000", endColorstr="#60000000");
+		}
+	}
+	.content {
+		padding: 10px;
+		padding-top: 1px;
+		h2 {
+			padding-bottom: 10px;
+		}
+		h3 {
+			padding-top: 5px;
+			padding-bottom: 5px;
+		}
+		section {
+			margin: 10px 0;
+		}
+	}
+	.overview-section {
+		margin-top: 12px !important;
+		> div {
+			float: left;
+			width: 100%;
+			.overview-description {
+				width: 100%;
+				min-height: 100px;
+				line-height: 28px;
+				p {
+					line-height: 28px;
+					margin-bottom: 15px;
+				}
+				div {
+					line-height: 28px;
+					margin-bottom: 15px;
+				}
+			}
+		}
+	}
+	.photo-thumb-list {
+		overflow-x: hidden;
+		overflow-y: hidden;
+		.photo-thumb {
+			padding: 2px;
+			float: left;
+			width: 25%;
+			img {
+				width: 100%;
+			}
+			.img-div {
+				width: 100%;
+				height: 0;
+				padding-bottom: 100%;
+				background-position: center center;
+				background-size: cover;
+			}
+		}
+	}
+	.photos-section {
+		width: 100%;
+		.add-photo-button {
+			margin-bottom: 20px;
+		}
+	}
+	.map-section {
+		float: left;
+		width: 100%;
+		.map-container {
+			width: 100%;
+			height: 0;
+			padding-bottom: 75%;
+		}
+		.download-gpx {
+			margin-top: 10px;
+			float: right;
+		}
+		.map-attribution {
+			font-family: $font_0, $font_1, $font_2;
+			font-size: 10px;
+			padding: 4px;
+			float: left;
+			a {
+				color: $color_tundora_approx;
+			}
+		}
+	}
+}
+@media all and(max-width: 1024px) {
+	.entry-page {
+		width: 100%;
+	}
+	.overview-facts {
+		margin: 0 10px 4px 15px;
+	}
+}
+.overview-facts {
+	position: relative;
+	z-index: 10;
+	float: right;
+	width: 310px;
+	margin: 0 0 4px 15px;
+	.page-curl {
+		img {
+			@extend %extend_9;
+		}
+		.img-div {
+			@extend %extend_9;
+			background-position: center center;
+			background-size: cover;
+		}
+	}
+	> div {
+		padding: 25px;
+	}
+	.image-container {
+		margin-bottom: 14px;
+		position: relative;
+	}
+	tr {
+		td {
+			vertical-align: top;
+			&:first-child {
+				width: 82px;
+				color: $color_mine_shaft_approx;
+				font-weight: bold;
+				font-size: 16px;
+				float: left;
+				text-align: right;
+				+ td {
+					font-weight: 300;
+					font-size: 16px;
+					padding-left: 15px;
+				}
+			}
+		}
+		&:not(:first-child) td {
+			padding-top: 5px;
+		}
+	}
+	table {
+		margin-left: 10px;
+		line-height: 24px;
+		color: $color_fuscous_gray_approx;
+		svg {
+			@extend %extend_10;
+			fill: $color_curious_blue_approx;
+			&:hover {
+				fill: $color_bahama_blue_approx;
+			}
+		}
+		.hike-name {
+			@extend %extend_11;
+			min-height: 16px;
+			min-width: 120px;
+		}
+		.hike-locality {
+			@extend %extend_11;
+			min-height: 16px;
+			min-width: 120px;
+		}
+		.hike-distance {
+			@extend %extend_11;
+		}
+		.hike-elevation-gain {
+			@extend %extend_11;
+		}
+		.hike-elevation-max {
+			@extend %extend_11;
+		}
+		.hike-latitude {
+			@extend %extend_11;
+		}
+		.hike-longitude {
+			@extend %extend_11;
+		}
+		.hike-permit {
+			@extend %extend_11;
+			min-height: 16px;
+			min-width: 120px;
+			p {
+				line-height: inherit;
+			}
+		}
+		.hike-latitude-and-longitude {
+			min-height: 16px;
+			min-width: 120px;
+		}
+		.hike-latitude-and-label {
+			float: none !important;
+		}
+		.hike-longitude-and-label {
+			float: left;
+		}
+		a {
+			div {
+				color: $color_curious_blue_approx;
+			}
+			span {
+				color: $color_curious_blue_approx;
+			}
+			&:hover {
+				div {
+					color: $color_bahama_blue_approx;
+					text-decoration: underline;
+				}
+				span {
+					color: $color_bahama_blue_approx;
+					text-decoration: underline;
+				}
+			}
+		}
+		.unit-label {
+			float: left;
+			margin-left: 5px;
+			cursor: pointer;
+		}
+		img.external-link {
+			@extend %extend_10;
+		}
+	}
+}
+@media all and(max-width: 500px) {
+	.overview-facts > div {
+		width: 99%;
+	}
+}
+.container {
+	position: relative;
+	height: auto;
+	min-height: 100%;
+	&.index-container {
+		min-height: 450px;
+		height: 100%;
+	}
+}
+.index-page {
+	width: 100%;
+	height: auto;
+	position: absolute;
+	top: 45px;
+	bottom: 0;
+	background: $url_11 no-repeat center bottom fixed;
+	background-size: cover;
+	min-height: 450px;
+	.footer-banner {
+		position: absolute;
+		top: 100%;
+		width: 100%;
+		height: 125px;
+		margin-top: -125px;
+		background-color: $black_60;
+		filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr="#60000000", endColorstr="#60000000");
+		h1 {
+			padding: 20px 0 0 20px;
+			font-size: 60px;
+			color: $white;
+			font-weight: bold;
+		}
+		h2 {
+			padding: 0 0 15px 22px;
+			font-weight: 100;
+			font-size: 30px;
+			color: $white;
+		}
+	}
+	.content {
+		margin-top: 270px;
+		text-align: center;
+		.search-bar {
+			display: inline-block;
+		}
+	}
+}
+* {
+	//Instead of the line below you could use @include box-sizing($bs)
+	box-sizing: border-box;
+	&:focus {
+		outline: none;
+	}
+}
+input {
+	font-family: $font_3, $font_2;
+	//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	box-shadow: none;
+}
+textarea {
+	font-family: $font_3, $font_2;
+	height: 112px;
+}
+button {
+	font-family: $font_3, $font_2;
+	&:focus {
+		outline: 0 !important;
+	}
+	&.btn {
+		*padding-top: 3px;
+		*padding-bottom: 3px;
+		&.btn-large {
+			*padding-top: 7px;
+			*padding-bottom: 7px;
+		}
+		&.btn-small {
+			*padding-top: 3px;
+			*padding-bottom: 3px;
+		}
+		&.btn-mini {
+			*padding-top: 1px;
+			*padding-bottom: 1px;
+		}
+	}
+	&.btn::-moz-focus-inner {
+		padding: 0;
+		border: 0;
+	}
+}
+input::-webkit-outer-spin-button {
+	display: none;
+	margin: 0;
+}
+input::-webkit-inner-spin-button {
+	display: none;
+	margin: 0;
+}
+input[type=number] {
+}
+input[type=checkbox] {
+}
+img::selection {
+	background: rgba(0,0,0,0);
+}
+::-webkit-input-placeholder {
+	font-weight: 300;
+	opacity: .9;
+}
+:-moz-placeholder {
+	font-weight: 300;
+	opacity: .6;
+}
+::-moz-placeholder {
+	font-weight: 300;
+	opacity: .6;
+}
+:-ms-input-placeholder {
+	font-weight: 300;
+}
+[data-ng-view] {
+	padding-bottom: 55px;
+	width: 100%;
+	overflow: auto;
+}
+.noscript-header {
+	width: 100%;
+	font-size: 16px;
+	height: 30px;
+	line-height: 30px;
+	background-color: $color_mine_shaft_approx;
+	text-align: center;
+	color: $color_gallery_approx;
+}
+.attribution-link {
+	display: none;
+	position: absolute;
+	top: 8px;
+	left: 8px;
+	right: auto;
+	width: 20px !important;
+	height: 20px !important;
+	padding: 0;
+	opacity: .75;
+	cursor: pointer;
+	&.active {
+		display: inline;
+	}
+}
+.photo-metadata-string {
+	float: right;
+	text-align: right;
+	font-size: 12px;
+	line-height: 14px;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	margin-bottom: -20px;
+	opacity: 0;
+	//Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+	transition: opacity 0.5s ease-in-out;
+	a {
+		color: $white;
+	}
+	span {
+		color: $white;
+		float: right;
+	}
+	.separator {
+		display: inline;
+	}
+	br {
+		display: none;
+	}
+}
+.shadow-light {
+	//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	box-shadow: 0 1px 3px $color_gondola_40_approx;
+}
+.hide-ie-input-close::-ms-clear {
+	display: none;
+}
+@-o-keyframes rotate {
+	from {
+	}
+	to {
+	}
+}
+@-ms-keyframes rotate {
+	from {
+	}
+	to {
+	}
+}
+@-moz-keyframes rotate {
+	from {
+	}
+	to {
+	}
+}
+@-webkit-keyframes rotate {
+	from {
+	}
+	to {
+	}
+}
+@keyframes rotate {
+	from {
+		//Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+		transform: rotate(0deg);
+	}
+	to {
+		//Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+		transform: rotate(360deg);
+	}
+}
+.rotate {
+	animation-name: rotate;
+	animation-duration: 0.75s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+.loading-spinner {
+	width: 22px;
+	height: 22px;
+	opacity: .65;
+	background-image: $url_14;
+	background-size: 22px 22px;
+}
+.banner {
+	width: 100%;
+	height: 50px;
+	background-color: $color_flame_pea_approx;
+	text-align: center;
+	position: relative;
+	h3 {
+		color: $white;
+		line-height: 50px;
+		margin-left: 10px;
+		display: inline;
+		font-size: 18px;
+		font-weight: bold;
+	}
+	.buttons {
+		position: absolute;
+		right: 0;
+		padding: 8px;
+		margin-top: -50px;
+	}
+}
+.map-page {
+	width: 100%;
+	position: absolute;
+	top: 45px;
+	bottom: 0;
+	z-index: 2;
+	.banner {
+		position: absolute;
+		display: none;
+	}
+	.tooltip {
+		display: none;
+		cursor: pointer;
+		padding: 8px;
+		min-width: 80px;
+		position: absolute;
+		background-color: $color_romance_approx;
+		z-index: 100;
+		border: 1px solid $color_black_30_approx;
+		//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+		border-radius: 2px / 2px;
+		h3 {
+			font-weight: normal;
+			white-space: nowrap;
+			line-height: 22px;
+		}
+	}
+	.map-container {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		width: 100%;
+	}
+	&.showBanner {
+		.banner {
+			display: block;
+		}
+		.map-container {
+			top: 50px;
+		}
+	}
+}
+.modal-input-dialog {
+	display: none;
+	margin: 25px 10px 10px;
+	width: 450px;
+	h2 {
+		padding-bottom: 15px;
+		padding-left: 10px;
+		font-size: 40px;
+	}
+	form {
+		width: 450px;
+		overflow: auto;
+		label {
+			float: left;
+			clear: left;
+			width: 150px;
+			text-align: right;
+			font-size: 18px;
+			line-height: 45px;
+			margin-right: 8px;
+		}
+		input[type=text] {
+			@extend %extend_14;
+		}
+		input[type=number] {
+			@extend %extend_14;
+		}
+		textarea {
+			@extend %extend_14;
+		}
+		input[type=submit] {
+			float: right;
+			clear: left;
+			display: block;
+			margin: 12px 10px 5px;
+		}
+		&.submitted .ng-invalid-required {
+			outline: none;
+			border: 1px solid $color_flame_pea_approx;
+		}
+	}
+}
+.photo-stream-page {
+	width: 100%;
+	height: 100%;
+	padding-bottom: 40px;
+	.preview-list {
+		width: 100%;
+		height: 100%;
+		overflow-x: hidden;
+		overflow-y: hidden;
+	}
+	.preview {
+		opacity: 0;
+		margin-bottom: 2px;
+		img {
+			width: 100%;
+		}
+	}
+	.preview-fade-in {
+		//Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+		transition: opacity 0.4s ease-in-out;
+	}
+	.preview-footer {
+		height: 51px;
+		padding: 10px;
+		margin-top: -51px;
+		position: relative;
+		background-color: $black_65;
+		filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr="#60000000", endColorstr="#60000000");
+		white-space: nowrap;
+		overflow: hidden;
+		> div {
+			&:first-child {
+				float: left;
+			}
+			&:nth-child(2) {
+				float: right;
+			}
+		}
+	}
+	.preview-title {
+		font-size: 16px;
+		line-height: 16px;
+		font-weight: bold;
+		padding-bottom: 4px;
+		color: $white;
+		width: 250px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.preview-location {
+		font-size: 13px;
+		line-height: 13px;
+		color: $color_celeste_approx;
+	}
+	.preview-distance {
+		font-size: 13px;
+		line-height: 13px;
+		color: $color_celeste_approx;
+	}
+	.loading-spinner {
+		position: absolute;
+		margin-bottom: -50px;
+		bottom: 15px;
+		left: 50%;
+	}
+}
+.search-bar {
+	.search-type {
+		display: inline;
+		float: left;
+		height: 41px;
+		background-color: $color_gallery_approx;
+		padding: 0;
+		font-size: 14px;
+		border: 0;
+		//Instead of the line below you could use @include border-top-right-radius($radius)
+		border-top-right-radius: 0;
+		//Instead of the line below you could use @include border-bottom-right-radius($radius)
+		border-bottom-right-radius: 0;
+		//Instead of the line below you could use @include border-top-left-radius($radius)
+		border-top-left-radius: 2px;
+		//Instead of the line below you could use @include border-bottom-left-radius($radius)
+		border-bottom-left-radius: 2px;
+		//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+		box-shadow: 1px 1px 3px $color_gondola_40_approx;
+		&.short {
+			display: none;
+			height: 41px;
+		}
+		&:hover {
+			background-position: 0 0;
+		}
+	}
+	.input-box {
+		position: relative;
+		float: left;
+		//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+		box-shadow: 1px 1px 3px $color_gondola_40_approx;
+		background-color: $white;
+		//Instead of the line below you could use @include border-top-right-radius($radius)
+		border-top-right-radius: 2px;
+		//Instead of the line below you could use @include border-bottom-right-radius($radius)
+		border-bottom-right-radius: 2px;
+		//Instead of the line below you could use @include border-top-left-radius($radius)
+		border-top-left-radius: 0;
+		//Instead of the line below you could use @include border-bottom-left-radius($radius)
+		border-bottom-left-radius: 0;
+		input {
+			float: left;
+			border: none;
+			border-color: transparent;
+			border-left: 1px solid $color_black_30_approx;
+			color: $color_fuscous_gray_approx;
+			font-size: 18px;
+			font-weight: 300;
+			height: 41px;
+			padding: 9px;
+			padding-right: 0;
+			//Instead of the line below you could use @include border-top-right-radius($radius)
+			border-top-right-radius: 2px;
+			//Instead of the line below you could use @include border-bottom-right-radius($radius)
+			border-bottom-right-radius: 2px;
+			//Instead of the line below you could use @include border-top-left-radius($radius)
+			border-top-left-radius: 0;
+			//Instead of the line below you could use @include border-bottom-left-radius($radius)
+			border-bottom-left-radius: 0;
+		}
+		.search-input-button {
+			float: left;
+			vertical-align: middle;
+			padding: 12px 10px 10px;
+			cursor: pointer;
+			opacity: .65;
+			background-color: $color_black_0.1_approx;
+			svg {
+				width: 16px;
+				height: 16px;
+			}
+			img {
+				width: 16px;
+				height: 16px;
+			}
+			&:hover {
+				opacity: .9;
+			}
+		}
+		.loading-spinner {
+			position: absolute;
+			top: 10px;
+			right: 7px;
+		}
+	}
+	&.search-by-location {
+		.search-type {
+			width: 154px;
+			&.short {
+				width: 90px;
+			}
+		}
+		input {
+			width: 380px;
+		}
+	}
+	&.search-by-name {
+		.search-type {
+			width: 134px;
+			&.short {
+				width: 70px;
+			}
+		}
+		input {
+			width: 400px;
+		}
+	}
+}
+@media all and(max-width: 550px) {
+	.search-bar {
+		&.search-by-location input {
+			width: 240px;
+		}
+		&.search-by-name input {
+			width: 260px;
+		}
+	}
+}
+.search-page {
+	.did-you-mean {
+		padding: 15px;
+		border-bottom: 1px solid $color_alto_approx;
+	}
+	.add-link {
+		cursor: pointer;
+	}
+	.no-results {
+		padding: 15px;
+	}
+	.unable-to-find {
+		font-size: 36px;
+		margin-bottom: 10px;
+	}
+}
+.clearfix {
+	*zoom: 1;
+	&:before {
+		@extend %extend_15;
+	}
+	&:after {
+		@extend %extend_15;
+		display: block;
+		visibility: hidden;
+		clear: both;
+		height: 0;
+		content: " ";
+		font-size: 0;
+	}
+}
+.hide-text {
+	font: 0/0 a;
+	color: transparent;
+	//Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	text-shadow: none;
+	background-color: transparent;
+	border: 0;
+}
+.input-block-level {
+	display: block;
+	width: 100%;
+	min-height: 30px;
+	//Instead of the line below you could use @include box-sizing($bs)
+	box-sizing: border-box;
+}
+.btn {
+	height: 35px;
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	padding: 4px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	line-height: 20px;
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	color: $color_mine_shaft_approx;
+	//Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	text-shadow: 0 1px 1px $white_75;
+	background-color: $color_wild_sand_approx;
+	background-image: linear-gradient(to bottom, $white,$color_mercury_approx);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
+	border-color: $color_mercury_approx $color_mercury_approx $color_silver_approx;
+	border-color: $black_10 $black_10 $black_25;
+	*background-color: $color_mercury_approx;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+	border: 1px solid $color_pink_swan_approx;
+	*border: 0;
+	border-bottom-color: $color_delta_approx;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 4px;
+	*margin-left: .3em;
+	//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	box-shadow: inset 0 1px 0 $white_20,0 1px 2px $black_5;
+	border-color: $color_pumice_approx;
+	border-color: $black_15 $black_15 $black_25;
+	&:hover {
+		@extend %extend_16;
+		color: $color_mine_shaft_approx;
+		text-decoration: none;
+		background-position: 0 -15px;
+		//Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+		transition: background-position 0.1s linear;
+	}
+	&:active {
+		@extend %extend_16;
+		background-color: $color_celeste_approx \9;
+		@extend %extend_17;
+	}
+	&.active {
+		@extend %extend_16;
+		background-color: $color_celeste_approx \9;
+		@extend %extend_17;
+	}
+	&.disabled {
+		@extend %extend_16;
+		@extend %extend_18;
+	}
+	&:first-child {
+		*margin-left: 0;
+	}
+	&:focus {
+		outline: thin dotted $color_mine_shaft_approx;
+		outline-offset: -2px;
+	}
+}
+.btn[disabled] {
+	@extend %extend_16;
+	@extend %extend_18;
+}
+.btn-large {
+	padding: 11px 19px;
+	font-size: 17.5px;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 6px;
+	[class^="icon-"] {
+		margin-top: 4px;
+	}
+	[class*=" icon-"] {
+		margin-top: 4px;
+	}
+}
+.btn-small {
+	padding: 2px 10px;
+	font-size: 11.9px;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 3px;
+	[class^="icon-"] {
+		margin-top: 0;
+	}
+	[class*=" icon-"] {
+		margin-top: 0;
+	}
+}
+.btn-mini {
+	padding: 0 6px;
+	font-size: 10.5px;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 3px;
+	[class^="icon-"] {
+		margin-top: -1px;
+	}
+	[class*=" icon-"] {
+		margin-top: -1px;
+	}
+}
+.btn-block {
+	display: block;
+	width: 100%;
+	padding-left: 0;
+	padding-right: 0;
+	//Instead of the line below you could use @include box-sizing($bs)
+	box-sizing: border-box;
+	+ .btn-block {
+		margin-top: 5px;
+	}
+}
+input[type="submit"] {
+	&.btn-block {
+		width: 100%;
+	}
+	&.btn {
+		*padding-top: 3px;
+		*padding-bottom: 3px;
+		&.btn-large {
+			*padding-top: 7px;
+			*padding-bottom: 7px;
+		}
+		&.btn-small {
+			*padding-top: 3px;
+			*padding-bottom: 3px;
+		}
+		&.btn-mini {
+			*padding-top: 1px;
+			*padding-bottom: 1px;
+		}
+	}
+	&.btn::-moz-focus-inner {
+		padding: 0;
+		border: 0;
+	}
+}
+.btn-primary {
+	color: $white;
+	//Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	text-shadow: 0 -1px 0 $black_25;
+	background-color: $color_science_blue_approx;
+	background-image: linear-gradient(to bottom, $color_lochmara_approx,$color_cobalt_approx);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
+	border-color: $color_cobalt_approx $color_cobalt_approx $color_resolution_blue_approx;
+	border-color: $black_10 $black_10 $black_25;
+	*background-color: $color_cobalt_approx;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+	&.active {
+		color: $white_75;
+		@extend %extend_19;
+		background-color: $smalt \9;
+	}
+	&:hover {
+		@extend %extend_19;
+	}
+	&:active {
+		@extend %extend_19;
+		background-color: $smalt \9;
+	}
+	&.disabled {
+		@extend %extend_19;
+	}
+}
+.btn-warning {
+	color: $white;
+	//Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	text-shadow: 0 -1px 0 $black_25;
+	background-color: $color_sea_buckthorn_approx;
+	background-image: linear-gradient(to bottom, $color_casablanca_approx,$color_pizazz_approx);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fffbb450', endColorstr='#fff89406', GradientType=0);
+	border-color: $color_pizazz_approx $color_pizazz_approx $color_mai_tai_approx;
+	border-color: $black_10 $black_10 $black_25;
+	*background-color: $color_pizazz_approx;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+	&.active {
+		color: $white_75;
+		@extend %extend_20;
+		background-color: $color_indochine_approx \9;
+	}
+	&:hover {
+		@extend %extend_20;
+	}
+	&:active {
+		@extend %extend_20;
+		background-color: $color_indochine_approx \9;
+	}
+	&.disabled {
+		@extend %extend_20;
+	}
+}
+.btn-danger {
+	color: $white;
+	//Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	text-shadow: 0 -1px 0 $black_25;
+	background-color: $color_flame_pea_approx;
+	background-image: linear-gradient(to bottom, $color_carnation_approx,$color_well_read_approx);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffee5f5b', endColorstr='#ffbd362f', GradientType=0);
+	border-color: $color_well_read_approx $color_well_read_approx $color_crown_of_thorns_approx;
+	border-color: $black_10 $black_10 $black_25;
+	*background-color: $color_well_read_approx;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+	&.active {
+		color: $white_75;
+		@extend %extend_21;
+		background-color: $color_burnt_umber_approx \9;
+	}
+	&:hover {
+		@extend %extend_21;
+	}
+	&:active {
+		@extend %extend_21;
+		background-color: $color_burnt_umber_approx \9;
+	}
+	&.disabled {
+		@extend %extend_21;
+	}
+}
+.btn-success {
+	color: $white;
+	//Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	text-shadow: 0 -1px 0 $black_25;
+	background-color: $color_fern_approx;
+	background-image: linear-gradient(to bottom, $color_fern_approx,$color_fruit_salad_approx);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff62c462', endColorstr='#ff51a351', GradientType=0);
+	border-color: $color_fruit_salad_approx $color_fruit_salad_approx $color_killarney_approx;
+	border-color: $black_10 $black_10 $black_25;
+	*background-color: $color_fruit_salad_approx;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+	&.active {
+		color: $white_75;
+		@extend %extend_22;
+		background-color: $color_fern_green_approx \9;
+	}
+	&:hover {
+		@extend %extend_22;
+	}
+	&:active {
+		@extend %extend_22;
+		background-color: $color_fern_green_approx \9;
+	}
+	&.disabled {
+		@extend %extend_22;
+	}
+}
+.btn-info {
+	color: $white;
+	//Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	text-shadow: 0 -1px 0 $black_25;
+	background-color: $color_shakespeare_approx;
+	background-image: linear-gradient(to bottom, $color_viking_approx,$color_boston_blue_approx);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff2f96b4', GradientType=0);
+	border-color: $color_boston_blue_approx $color_boston_blue_approx $color_blumine_approx;
+	border-color: $black_10 $black_10 $black_25;
+	*background-color: $color_boston_blue_approx;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+	&.active {
+		color: $white_75;
+		@extend %extend_23;
+		background-color: $color_calypso_approx \9;
+	}
+	&:hover {
+		@extend %extend_23;
+	}
+	&:active {
+		@extend %extend_23;
+		background-color: $color_calypso_approx \9;
+	}
+	&.disabled {
+		@extend %extend_23;
+	}
+}
+.btn-inverse {
+	color: $white;
+	//Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	text-shadow: 0 -1px 0 $black_25;
+	background-color: $color_tuatara_approx;
+	background-image: linear-gradient(to bottom, $color_tundora_approx,$color_log_cabin_approx);
+	background-repeat: repeat-x;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff444444', endColorstr='#ff222222', GradientType=0);
+	border-color: $color_log_cabin_approx $color_log_cabin_approx $black;
+	border-color: $black_10 $black_10 $black_25;
+	*background-color: $color_log_cabin_approx;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+	&.active {
+		color: $white_75;
+		@extend %extend_24;
+		background-color: $color_cod_gray_approx \9;
+	}
+	&:hover {
+		@extend %extend_24;
+	}
+	&:active {
+		@extend %extend_24;
+		background-color: $color_cod_gray_approx \9;
+	}
+	&.disabled {
+		@extend %extend_24;
+	}
+}
+.btn-primary[disabled] {
+	@extend %extend_19;
+}
+.btn-warning[disabled] {
+	@extend %extend_20;
+}
+.btn-danger[disabled] {
+	@extend %extend_21;
+}
+.btn-success[disabled] {
+	@extend %extend_22;
+}
+.btn-info[disabled] {
+	@extend %extend_23;
+}
+.btn-inverse[disabled] {
+	@extend %extend_24;
+}
+.btn-link {
+	@extend %extend_25;
+	border-color: transparent;
+	cursor: pointer;
+	color: $color_lochmara_approx;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 0;
+	&:active {
+		@extend %extend_25;
+	}
+	&:hover {
+		color: $color_orient_approx;
+		text-decoration: underline;
+		background-color: transparent;
+	}
+}
+.btn-link[disabled] {
+	@extend %extend_25;
+	&:hover {
+		color: $color_mine_shaft_approx;
+		text-decoration: none;
+	}
+}
+.fancybox-wrap {
+	@extend %extend_26;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 8020;
+	iframe {
+		@extend %extend_26;
+	}
+	object {
+		@extend %extend_26;
+	}
+}
+.fancybox-skin {
+	@extend %extend_26;
+	position: relative;
+	background: $color_alabaster_approx;
+	color: $color_tundora_approx;
+	//Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	text-shadow: none;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 4px;
+}
+.fancybox-outer {
+	@extend %extend_26;
+	position: relative;
+}
+.fancybox-inner {
+	@extend %extend_26;
+	position: relative;
+	overflow: hidden;
+}
+.fancybox-image {
+	@extend %extend_26;
+	@extend %extend_27;
+	max-width: 100%;
+	max-height: 100%;
+}
+.fancybox-nav {
+	@extend %extend_26;
+	position: absolute;
+	top: 0;
+	width: 40%;
+	height: 100%;
+	cursor: pointer;
+	text-decoration: none;
+	background: transparent $url_17;
+	z-index: 8040;
+	span {
+		@extend %extend_26;
+		position: absolute;
+		top: 50%;
+		width: 36px;
+		height: 34px;
+		margin-top: -18px;
+		cursor: pointer;
+		z-index: 8040;
+		visibility: hidden;
+	}
+	&:hover span {
+		visibility: visible;
+	}
+}
+.fancybox-tmp {
+	@extend %extend_26;
+	position: absolute;
+	top: -99999px;
+	left: -99999px;
+	visibility: hidden;
+	max-width: 99999px;
+	max-height: 99999px;
+	overflow: visible !important;
+}
+.fancybox-opened {
+	z-index: 8030;
+	.fancybox-skin {
+		//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+		box-shadow: 0 10px 25px $black_50;
+	}
+	.fancybox-title {
+		visibility: visible;
+	}
+}
+.fancybox-error {
+	color: $color_tundora_approx;
+	font: 14px/20px $font_4, $font_5, $font_1, $font_2;
+	margin: 0;
+	padding: 15px;
+	white-space: nowrap;
+}
+.fancybox-iframe {
+	@extend %extend_27;
+}
+#fancybox-loading {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -25px;
+	margin-left: -25px;
+	background-position: 0 -108px;
+	opacity: 0.8;
+	cursor: pointer;
+	z-index: 8060;
+	div {
+		width: 50px;
+		height: 50px;
+		animation-name: rotate;
+		animation-duration: 0.75s;
+		animation-iteration-count: infinite;
+		animation-timing-function: linear;
+		background-image: $url_15;
+		background-size: 50px 50px;
+	}
+}
+.fancybox-close {
+	position: absolute;
+	top: -14px;
+	right: -14px;
+	width: 28px;
+	height: 28px;
+	cursor: pointer;
+	z-index: 8040;
+	background-size: 28px 28px;
+	background-image: $url_16;
+}
+.fancybox-prev {
+	left: 0;
+	span {
+		left: 10px;
+		background-position: 0 -36px;
+	}
+}
+.fancybox-next {
+	right: 0;
+	span {
+		right: 10px;
+		background-position: 0 -72px;
+	}
+}
+.fancybox-lock {
+	overflow: hidden;
+	.fancybox-overlay {
+		overflow: auto;
+	}
+}
+.fancybox-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	display: none;
+	z-index: 8010;
+	background-color: $black_82;
+}
+.fancybox-overlay-fixed {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+}
+.fancybox-title {
+	visibility: hidden;
+	font: normal 13px/20px $font_4, $font_5, $font_1, $font_2;
+	position: relative;
+	//Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	text-shadow: none;
+	z-index: 8050;
+}
+.fancybox-title-float-wrap {
+	position: absolute;
+	bottom: 0;
+	right: 50%;
+	margin-bottom: -35px;
+	z-index: 8050;
+	text-align: center;
+	.child {
+		display: inline-block;
+		margin-right: -100%;
+		padding: 2px 20px;
+		background: transparent;
+		background: $black_80;
+		//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+		border-radius: 15px;
+		//Instead of the line below you could use @include text-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+		text-shadow: 0 1px 2px $color_log_cabin_approx;
+		color: $white;
+		font-weight: bold;
+		line-height: 24px;
+		white-space: nowrap;
+	}
+}
+.fancybox-title-outside-wrap {
+	position: relative;
+	margin-top: 10px;
+	color: $white;
+}
+.fancybox-title-inside-wrap {
+	padding-top: 10px;
+}
+.fancybox-title-over-wrap {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	color: $white;
+	padding: 10px;
+	background: $black;
+	background: $black_80;
+}
+.medium-toolbar-arrow {
+	@extend %extend_28;
+}
+.medium-editor-toolbar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 10;
+	display: none;
+	background: $color_shark_approx;
+	font-size: 16px;
+	//Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+	border-radius: 5px;
+	//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	box-shadow: 0 0 3px $black;
+	ul {
+		margin: 0;
+		padding: 0;
+	}
+	li {
+		float: left;
+		list-style: none;
+		button {
+			display: block;
+			padding: 15px;
+			//Instead of the line below you could use @include box-sizing($bs)
+			box-sizing: border-box;
+			height: 50px;
+			width: 50px;
+			background: $color_shark_approx;
+			color: $white;
+			border: 0;
+			border-right: 1px solid $black;
+			border-left: 1px solid $color_mine_shaft_approx;
+			border-left: 1px solid $white_10;
+			font-size: 16px;
+			font-weight: bold;
+			text-decoration: none;
+			text-transform: uppercase;
+			//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+			box-shadow: 0 2px 2px $black_30;
+			//Instead of the line below you could use @include transition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+			transition: background-color 0.2s ease-in;
+			&:hover {
+				background-color: $black;
+			}
+		}
+		.medium-editor-button-first {
+			//Instead of the line below you could use @include border-top-left-radius($radius)
+			border-top-left-radius: 5px;
+			//Instead of the line below you could use @include border-bottom-left-radius($radius)
+			border-bottom-left-radius: 5px;
+		}
+		.medium-editor-button-last {
+			//Instead of the line below you could use @include border-top-right-radius($radius)
+			border-top-right-radius: 5px;
+			//Instead of the line below you could use @include border-bottom-right-radius($radius)
+			border-bottom-right-radius: 5px;
+		}
+		.medium-editor-button-active {
+			background-color: $black;
+			color: $white;
+		}
+		.medium-editor-action-underline {
+			text-decoration: underline;
+		}
+	}
+}
+.medium-editor-action-bold {
+	font-weight: bolder;
+}
+.medium-editor-action-italic {
+	font-style: italic;
+}
+.medium-editor-toolbar-form-anchor {
+	display: none;
+	color: $color_mountain_mist_approx;
+	::-webkit-input-placeholder {
+		color: $color_gallery_approx;
+	}
+	:-moz-placeholder {
+		color: $color_gallery_approx;
+	}
+	::-moz-placeholder {
+		color: $color_gallery_approx;
+	}
+	:-ms-input-placeholder {
+		color: $color_gallery_approx;
+	}
+	input {
+		//Instead of the line below you could use @include box-sizing($bs)
+		box-sizing: border-box;
+		padding: 6px;
+		font-size: 16px;
+		height: 50px;
+		background: $color_shark_approx;
+		border: none;
+		color: $color_celeste_approx;
+		&:focus {
+			outline: 0;
+		}
+	}
+	a {
+		color: $white;
+		font-weight: bolder;
+		font-size: 24px;
+		display: inline-block;
+		margin: 0 10px;
+		text-decoration: none;
+	}
+}
+.medium-editor-placeholder {
+	position: relative;
+	&:before {
+		position: relative;
+		top: 0;
+		left: 0;
+		content: attr(data-placeholder);
+		color: $color_nobel_approx;
+		font-style: italic;
+	}
+}
+.page-curl {
+	background: $white;
+	margin: 0 auto 5px auto;
+	padding: 15px;
+	position: relative;
+	border: 1px solid $color_alto_approx;
+	//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+	box-shadow: 0 1px 1px $black_27,0 0 40px $black_6 inset;
+	&:before {
+		@extend %extend_29;
+	}
+	&:after {
+		@extend %extend_29;
+		//Instead of the line below you could use @include transform($scale, $rotate, $transx, $transy, $skewx, $skewy, $originx, $originy)
+		transform: skew(4deg) rotate(4deg);
+		left: auto;
+		right: 12px;
+	}
+	&.shadow-left {
+		background: linear-gradient(0deg, $color_wild_sand_approx 0,$white 50%) !important;
+	}
+	&.shadow-right {
+		background: linear-gradient(0deg, $white 50%,$color_wild_sand_approx 100%) !important;
+	}
+}
+.shadow-bottom {
+	&:before {
+		@extend %extend_30;
+	}
+	&:after {
+		@extend %extend_30;
+	}
+}
+.shadow-top-bottom {
+	&.shadow-left:after {
+		display: block;
+		bottom: auto;
+		top: 15px;
+		right: auto;
+		left: 12px;
+		//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+		box-shadow: 0 -10px 12px $black_50;
+	}
+	&.shadow-right:before {
+		display: block;
+		bottom: auto;
+		top: 15px;
+		right: 12px;
+		left: auto;
+		//Instead of the line below you could use @include box-shadow($shadow-1, $shadow-2, $shadow-3, $shadow-4, $shadow-5, $shadow-6, $shadow-7, $shadow-8, $shadow-9, $shadow-10)
+		box-shadow: 0 -10px 12px $black_50;
+	}
+}
+input[type="reset"].btn-block {
+	width: 100%;
+}
+input[type="button"].btn-block {
+	width: 100%;
+}
+.fancybox-type-iframe .fancybox-inner {
+}
+.medium-toolbar-arrow-under:after {
+	@extend %extend_28;
+	top: 50px;
+	border-width: 8px 8px 0 8px;
+	border-color: $color_shark_approx transparent transparent transparent;
+}
+.medium-toolbar-arrow-over:before {
+	@extend %extend_28;
+	top: -8px;
+	border-width: 0 8px 8px 8px;
+	border-color: transparent transparent $color_shark_approx transparent;
+}
+.medium-editor-placeholder-ie:not(:focus) {
+	position: relative;
+	&:before {
+		position: relative;
+		top: 0;
+		left: 0;
+		content: attr(data-placeholder);
+		color: $color_nobel_approx;
+		font-style: italic;
+	}
+}
+.shadow-left:after {
+	display: none;
+}
+.shadow-right:before {
+	display: none;
+}

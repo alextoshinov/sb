@@ -1,0 +1,17 @@
+ShowyBulgaria 
+gmail:showybulgaria@gmail.com
+pass: BGHikes2017
+Google API Key: AIzaSyB-HrjguRpC4uaMLMKW0C48lWELujQ7Lfg
+
+{
+	"web" : {
+		"client_id" : "594854194818-j2mjr64k0l8iao75th2phf6ba47nde0d.apps.googleusercontent.com",
+		"project_id" : "showybulgaria-975",
+		"auth_uri" : "https://accounts.google.com/o/oauth2/auth",
+		"token_uri" : "https://accounts.google.com/o/oauth2/token",
+		"auth_provider_x509_cert_url" : "https://www.googleapis.com/oauth2/v1/certs",
+		"client_secret" : "PKLIPAcxQr1yd2b8rgItAJu5",
+		"redirect_uris" : ["http://localhost:8000"],
+		"javascript_origins" : ["http://localhost:8000"]
+	}
+}

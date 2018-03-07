@@ -1,0 +1,103 @@
+@import "_vars";
+@import "_mixins";
+@import "compass/css3/user-interface";
+
+.entry-edit-page {
+	.header-landscape {
+		h1 {
+			text-overflow: clip !important; /* Important so that it overrides the ellipses overflow set in edit.scss */
+		}
+	}
+
+	.dashed-border {
+		border: 4px dashed #999;
+	}
+
+	img, .img-div {
+		cursor: pointer;
+	}
+
+	.delete-photo-icon,.delete-map-icon {
+		position: absolute;
+		right: 0px;
+		top: 0px;
+		z-index: 10;
+		padding: 3px 8px;
+		cursor: pointer;
+		font-size: 30px;
+		line-height: 30px;
+		color: white;
+		text-shadow: 1px 1px 3px #111;
+		@include user-select(none);
+	}
+
+	.metadata-section {
+		float: left;
+		width: 100%;
+		padding-top: 10px;
+		.image-container {
+			position: relative;
+			width: 25%;
+		}
+
+		.placeholder-img {
+			width: 25%;	
+		}
+
+		img,.img-div {
+			width: 100%;
+		}
+	
+		.img-div {
+			height: 0;
+			padding-bottom: 100%;
+			background-position: center center;
+			background-size:cover;
+		}
+
+		.discover-explanation {
+			font-size: 14px;
+			padding-bottom: 5px;
+		}
+	}
+
+	.map-section {
+		.dashed-border.map-container {
+			padding-bottom: 50%;
+		}
+	}
+
+	@media all and (max-width: 600px) {
+		.metadata-section {
+			.image-container, .placeholder-img {
+				width: 33.333%;
+			}
+		}
+	}
+}
+
+@media all and (max-width: 900px) {
+	.banner.edit-banner-review {
+		text-align: left;
+	}
+}
+
+@media all and (max-width: 700px) {
+	.banner.edit-banner-review {
+		text-align: left;
+		h3 {
+			font-size: 15px;
+		}
+	}
+}
+
+@media all and (max-width: $mobile-width) {
+	.banner.edit-banner {
+		text-align: left;
+	}
+	.banner.edit-banner-review {
+		.live-soon-msg {
+			display: none;
+		}
+	}
+}

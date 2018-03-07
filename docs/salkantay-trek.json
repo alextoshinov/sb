@@ -1,0 +1,130 @@
+[
+  {
+    "id": 3,
+    "string_id": "salkantay-trek",
+    "location_id": 1,
+    "photo_facts_id": 1,
+    "photo_landscape_id": 2,
+    "photo_preview_id": 3,
+    "name": "Salkantay Trek",
+    "description": "<p>Salkantay Trek, an alternative to the popular <a href=\\\"http://en.wikipedia.org/wiki/Inca_Trail_to_Machu_Picchu\\\" rel=\\\"nofollow\\\">Inca Trail</a>, begins in southern Peru's Mollepata Valley and traverses past the base of <a href=\\\"http://en.wikipedia.org/wiki/Salcantay\\\" rel=\\\"nofollow\\\">Mount Salkantay</a> (<span data-conversion=\\\"true\\\" data-value=\\\"6271.0\\\" data-units=\\\"m\\\"><span data-value=\\\"true\\\">6271.0</span> <span data-units=\\\"true\\\">m</span></span>). The hike officially terminates in Aguas Calientes, but given its proximity to <a href=\\\"http://en.wikipedia.org/wiki/Machu_Picchu\\\" rel=\\\"nofollow\\\">Machu Picchu</a>, it is common to combine the two hikes.</p><p>The 3 to 6 day Salkantay Trek covers a diverse ecosystem of <a href=\\\"http://en.wikipedia.org/wiki/Puna_grassland\\\" rel=\\\"nofollow\\\">high puna landscapes</a>, <a href=\\\"http://en.wikipedia.org/wiki/Cloud_forest\\\" rel=\\\"nofollow\\\">cloud forests</a>, and tropical jungles.</p><h3>Day 1 - Mollepata Valley</h3><p>The first day is spent ascending the Mollepata Valley along dirt roads. The path is hot and dusty with little cover from the sun.</p><p>A couple hours into the hike is Cruzpata and the first view of Mount Humantay which along with Mount Salkantay, straddle Salkantay Pass, the highest point in the hike. This view is the ongoing destination for the ascent.</p><p>After a day of hiking, the first night is spent nestled between snowcapped mountains at Soraypampa (<span data-conversion=\\\"true\\\" data-value=\\\"3581.0\\\" data-units=\\\"m\\\"><span data-value=\\\"true\\\">3581.0</span> <span data-units=\\\"true\\\">m</span></span>).</p><h3>Day 2 - Salkantay Pass</h3><p>The second day is arguably the most strenuous day of the trek. With an early morning start, and roughly 4 hours of switchbacks, the ascent is slow and tiring. But the hiker's effort is rewarded at the summit, Salkantay Pass (<span data-conversion=\\\"true\\\" data-value=\\\"4600.0\\\" data-units=\\\"m\\\"><span data-value=\\\"true\\\">4600.0</span> <span data-units=\\\"true\\\">m</span></span>), with dramatic views of the sheer, snowcapped Salkantay and Humantay.</p><p>From the summit, the trail snakes downward into the cloud forest and follows the Sunchuccata River. The boulders and clouds of the higher elevations give way to a panoply of vegetation and wildlife as the trail descends into a tropical jungle. The day ends in Collpapampa at the base of the valley (<span data-conversion=\\\"true\\\" data-value=\\\"2920.0\\\" data-units=\\\"m\\\"><span data-value=\\\"true\\\">2920.0</span> <span data-units=\\\"true\\\">m</span></span>).</p><h3>Day 3 - La Playa and Aguas Calientes</h3><p>After the previous two days of hard trekking, the morning's relatively flat trail through the jungle is a welcome reprieve. Wildlife and waterfalls are the highlights and lunch is often taken at the small town of Lucmabamba.</p><p>From here, a bus takes hikers to Hidroelectrica, where they can board a train to Aguas Calientes or proceed on foot alongside the tracks. The trail near the train tracks is well traveled and provides views of river rapids, rock faces, and glimpses of Machu Picchu in the distance.</p><h3>Directions</h3><p>Starting from <a href=\\\"https://maps.google.com/maps?q=Cusco+Peru\\\" rel=\\\"nofollow\\\">Cusco</a>, hire a private shuttle to drive to <a href=\\\"https://maps.google.com/maps?q=Mollepata+Cusco+Peru\\\" rel=\\\"nofollow\\\">Mollepata</a> (for those hiking with a guide, this will be included). To return to Cusco from <a href=\\\"https://maps.google.com/maps?q=Aguas+Calientes+Cusco+Peru\\\" rel=\\\"nofollow\\\">Aguas Calientes</a>, hikers can take a train or bus.</p>",
+    "locality": "Peru",
+    "permit": "",
+    "route": "{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"properties\":{\"attribution\":{\"author\":\"© OpenStreetMap contributors\",\"license_link\":\"http://www.openstreetmap.org/copyright\"}},\"geometry\":{\"type\": \"LineString\", \"coordinates\": [[-116.081728, 48.188865, 123], [-116.662076494242413, 48.72749414542243, 124],[-116.662196794397431, 48.62626481357232, 125],[-116.664238981504525, 48.51175532632963, 126]]}}]}",
+    "distance": 80.95,
+    "elevation_gain": 1600.2,
+    "elevation_max": 4600.04,
+    "creation_time": "18:14:11",
+    "edit_time": "07:49:55",
+    "is_featured": 1,
+    "location": {
+      "id": 1,
+      "latitude": -13.35,
+      "longitude": -72.56
+    },
+    "photos_generic": [],
+    "photo_facts": {
+      "id": 1,
+      "string_id": "salkantay-trek/scotchman-peak/landscape",
+      "width": 2400,
+      "height": 2400,
+      "alt": "Hikers walk along a winding trail towards Mount Salkantay.",
+      "attribution_link": "http://www.flickr.com/photos/96151552@N06/11105027134/"
+    },
+    "photo_landscape": {
+      "id": 2,
+      "string_id": "salkantay-trek/preview",
+      "width": 2400,
+      "height": 800,
+      "alt": "Panoramic photo of a snow-capped Mt. Salkantay, hikers can seen in the lower left corner at Salkantay Pass.",
+      "attribution_link": ""
+    },
+    "photo_preview": {
+      "id": 3,
+      "string_id": "salkantay-trek/facts",
+      "width": 2400,
+      "height": 1594,
+      "alt": "Hikers rest at the summit of the Salkantay Trek, with a snow-capped Mount Salkantay looming in the background.",
+      "attribution_link": ""
+    }
+  },
+  {
+    "id": 6,
+    "string_id": "rajsko-pruskalo",
+    "location_id": 3,
+    "photo_facts_id": 19,
+    "photo_landscape_id": 23,
+    "photo_preview_id": null,
+    "name": "Rajsko pruskalo",
+    "description": null,
+    "locality": "Bulagria, Europe",
+    "permit": "",
+    "route": null,
+    "distance": 552,
+    "elevation_gain": 1662.07,
+    "elevation_max": 1384.71,
+    "creation_time": "15:05:40",
+    "edit_time": "00:00:00",
+    "is_featured": 1,
+    "location": {
+      "id": 3,
+      "latitude": 42.70269,
+      "longitude": 24.929
+    },
+    "photos_generic": [
+      {
+        "id": 9,
+        "string_id": "rajsko-pruskalo/generic",
+        "width": 1920,
+        "height": 1440,
+        "alt": "rajsko-pruskalo",
+        "attribution_link": null,
+        "pivot": {
+          "hike_id": 6,
+          "photo_id": 9
+        }
+      },
+      {
+        "id": 15,
+        "string_id": "rajsko-pruskalo/3392ffa6-b476-4d22-b180-0996aaacc157",
+        "width": 400,
+        "height": 266,
+        "alt": "rajsko-pruskalo",
+        "attribution_link": null,
+        "pivot": {
+          "hike_id": 6,
+          "photo_id": 15
+        }
+      },
+      {
+        "id": 16,
+        "string_id": "rajsko-pruskalo/19768c62-d6ec-4c3d-bbdb-84082ac20471",
+        "width": 200,
+        "height": 200,
+        "alt": "rajsko-pruskalo",
+        "attribution_link": null,
+        "pivot": {
+          "hike_id": 6,
+          "photo_id": 16
+        }
+      }
+    ],
+    "photo_facts": {
+      "id": 19,
+      "string_id": "rajsko-pruskalo/f29d8e1f-fc2c-4e84-a2ef-cf68c2ba133a",
+      "width": 200,
+      "height": 200,
+      "alt": "rajsko-pruskalo",
+      "attribution_link": null
+    },
+    "photo_landscape": {
+      "id": 23,
+      "string_id": "rajsko-pruskalo/6765b7f8-fcd3-453d-8bb6-a8c865dd4c61",
+      "width": 400,
+      "height": 133,
+      "alt": "rajsko-pruskalo",
+      "attribution_link": null
+    },
+    "photo_preview": null
+  }
+]

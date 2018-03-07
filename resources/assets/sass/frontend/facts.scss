@@ -1,0 +1,211 @@
+@import "_vars";
+@import "_mixins";
+
+$facts-width: 310px;
+$facts-padding: 25px;
+$facts-mobile-image-width: 122px;
+$facts-mobile-image-width-with-permit: 144px;
+$facts-external-link-svg-size: 12px;
+
+.overview-facts {
+	position: relative;
+	z-index: 10;
+	float: right;
+	width: $facts-width;
+	margin: 0px 0px 4px 15px;
+
+	.page-curl {
+		img, .img-div {
+			width: $facts-width - $facts-padding * 2;
+			height: $facts-width - $facts-padding * 2;
+			margin-bottom: 10px;
+		}
+	}
+
+	.page-curl .img-div {
+		background-position: center center;
+		background-size:cover;
+	}
+
+	> div {
+		padding: $facts-padding;
+	}
+
+	.image-container {
+		margin-bottom: 14px;
+		position: relative;
+	}
+
+	/* For some reason the tr styles are not getting applied when nested under the table on IE8, so un-nest them for now. */
+	tr td {
+		vertical-align: top;
+	}
+
+	tr td:first-child {
+		width: 82px;
+		color: $title-text-color;
+		font-weight: bold;
+		font-size: 16px;
+		float: left;
+		text-align: right;
+	}
+
+	tr td:first-child + td {
+		font-weight: 300;
+		font-size: 16px;
+		padding-left: 15px;
+	}
+
+	tr:not(:first-child) td {
+		padding-top: 5px;
+	}
+
+	table {
+		margin-left: 10px;
+		line-height: 24px;
+		color: $text-color;
+
+		svg, img.external-link {
+			width: $facts-external-link-svg-size;
+			height: $facts-external-link-svg-size;
+			max-width: $facts-external-link-svg-size;
+			max-height: $facts-external-link-svg-size;
+			margin: 0px;
+			padding: 0px;
+			margin-left: 4px;
+			display: inline;
+		}
+
+		svg {
+			fill: $link-color;
+		}
+
+		svg:hover {
+			fill: $link-hover-color;
+		}
+
+		.hike-name, .hike-locality, .hike-distance, .hike-elevation-gain, .hike-elevation-max, .hike-latitude, .hike-longitude, .hike-permit {
+			min-height: 16px;
+			min-width: 10px;
+			display: block;
+			float: left;
+			max-width: 160px;
+		}
+
+		.hike-name, .hike-locality, .hike-latitude-and-longitude, .hike-permit {
+			min-height: 16px;
+			min-width: 120px;
+		}
+
+		.hike-permit {
+			p {
+				line-height: inherit;
+			}
+		}
+		
+		.hike-latitude-and-label {
+			float: none !important;
+		}
+
+		.hike-longitude-and-label {
+			float:left;
+		}
+
+		a {
+			div,span {
+				color: $link-color;
+			}
+		}
+
+		a:hover {
+			div,span {
+				color: $link-hover-color;
+				text-decoration: underline;
+			}
+		}
+
+		.unit-label {
+			float: left;
+			margin-left: 5px;
+			cursor: pointer;
+		}
+	}
+}
+
+@media all and (max-width: $container-width) {
+	.overview-facts {
+		margin: 0px 10px 4px 15px;
+	}
+}
+
+@media all and (max-width: $facts-mobile-width) {
+	.overview-facts {
+		width: 100%;
+		margin: 0px;
+		float: none;
+
+		.image-container {
+			width: $facts-mobile-image-width;
+			margin-bottom: 0px;
+		}
+		
+		.page-curl {
+			img, .img-div {
+				width: $facts-mobile-image-width;
+				height: $facts-mobile-image-width;
+				float: left;
+			}
+		}
+
+		.permit {
+			.image-container {
+				width: $facts-mobile-image-width-with-permit;
+			}
+		}
+
+		.permit.page-curl {
+			img, .img-div {
+				width: $facts-mobile-image-width-with-permit;
+				height: $facts-mobile-image-width-with-permit;
+			}
+		}
+
+		> div {
+			padding: 13px 13px 20px 13px;
+			width: 92%;
+			position: relative;
+		}
+
+		table {
+			line-height: 18px;
+			margin-top: 0px;
+
+			tr:first-child {
+				display:none;
+			}
+
+			tr td:first-child {
+				text-align: left;
+				margin-left: 15px;
+			}
+
+			tr td:nth-child(2) {
+				padding-left: 10px;
+				min-width: 120px;
+				width: 100%;
+			}
+
+			.hike-name, .hike-locality, .hike-distance, .hike-elevation-gain, .hike-elevation-max, .hike-latitude, .hike-longitude, .hike-permit {
+				max-width: none;
+			}
+		}
+	}
+}
+
+@media all and (max-width: 500px) {
+	.overview-facts {
+		> div {
+			width: 99%;
+		}
+	}
+}

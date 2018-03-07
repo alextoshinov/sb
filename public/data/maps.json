@@ -1,0 +1,65 @@
+[{
+		"distance" : 80.9498,
+		"location" : {
+			"id" : 1,
+			"latitude" : 42.602178,
+			"longitude" : 23.4850122
+		},
+		"name" : "Sofia",
+		"string_id" : "sofia"
+	}, {
+		"distance" : 6.43736,
+		"location" : {
+			"id" : 3,
+			"latitude" : 42.549741,
+			"longitude" : 23.584667
+		},
+		"name" : "Glacier Lake",
+		"string_id" : "glacier-lake"
+	}, {
+		"distance" : 12.87472,
+		"location" : {
+			"id" : 4,
+			"latitude" : 42.188865,
+			"longitude" : 23.081728
+		},
+		"name" : "Scotchman Peak",
+		"string_id" : "scotchman-peak"
+	}, {
+		"distance" : 24.94477,
+		"location" : {
+			"id" : 5,
+			"latitude" : 42.30669,
+			"longitude" : 22.94745
+		},
+		"name" : "The Narrows",
+		"string_id" : "the-narrows"
+	}, {
+		"distance" : 5.63269,
+		"location" : {
+			"id" : 6,
+			"latitude" : 42.545,
+			"longitude" : -22.887
+		},
+		"name" : "Nakoa Trail",
+		"string_id" : "nakoa-trail"
+	}, {
+		"distance" : 12.23098,
+		"location" : {
+			"id" : 15,
+			"latitude" : 42.7171,
+			"longitude" : 23.7012
+		},
+		"name" : "Dog Mountain",
+		"string_id" : "dog-mountain"
+	}, {
+		"distance" : 12.87472,
+		"location" : {
+			"id" : 16,
+			"latitude" : 42.42082,
+			"longitude" : 23.33097
+		},
+		"name" : "Rachel Lake",
+		"string_id" : "rachel-lake"
+	}
+]
