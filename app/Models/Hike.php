@@ -22,7 +22,14 @@ class Hike extends Model
     protected $rules = [
         'string_id' => 'required|unique:hikes'
     ];
-    //
+    /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'location_id','photo_facts_id', 'photo_landscape_id', 'photo_preview_id'
+    ];
     
     //
     public function setNameAttribute($value) {

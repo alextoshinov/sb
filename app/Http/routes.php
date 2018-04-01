@@ -28,17 +28,37 @@ Route::put('api/me', ['middleware' => 'auth', 'uses' => 'UserController@updateUs
 Route::get('/', function () {
      return view('layout', [
          'html' => view('partials.index'),
-         'add' => view('partials.add')
+         'add' => view('partials.add'),
+         'partial' => 'index'
          ]);
 });
 
 Route::get('/partials/{name}.html', function ($name) {
     $view_path = 'partials.' . $name;
       if (View::exists($view_path)) {
-        return View::make($view_path);
+//        return View::make($view_path);
+          return view($view_path);
       }
   return abort(404);
 });
+//
+Route::get('hikes/{hike_id}', function($hike_id) {
+    $resource = \App\Models\Hike::where('string_id', $hike_id)->with('location','photo_landscape', 'photo_facts','photo_preview','photos_generic')->first()->toJson();
+
+    return view("layout", [
+        'html' => view('partials.entry'),
+        'add' => view('partials.add'),
+        'preload_resource' => '<div data-preload-resource="/api/v1/hikes/'.$hike_id.'">'.$resource.'</div>'
+    ]);
+});
+//
+Route::get('/img', function()
+{
+    $img = Image::make('/tmp/phpgVeDC2/')->resize(300, 200);
+
+    return $img->response('jpg');
+});
+//
 /*
  *  HTML Routes
  */
@@ -48,6 +68,7 @@ Route::get('/partials/{name}.html', function ($name) {
 /*
  *  API Routes
  */
+
 Route::group(['prefix' => 'api/v1'], function() {
     //Hikes controller
     Route::get('hikes', 'HikesController@index');
@@ -56,6 +77,7 @@ Route::group(['prefix' => 'api/v1'], function() {
     Route::post('hikes', 'HikesController@store');
     Route::post('hikes/{hike_id}/photos', 'HikesController@upload');
     Route::put('hikes/{hike_id}', 'HikesController@update');
+    Route::get('reviews', 'HikesController@reviews');
 });
 
 // http://localhost:8000/api/v1/hikes/search?fields=locality,name,photo_facts,string_id&q=rajsko+pruskalo
@@ -89,6 +111,7 @@ if (is_array($confAloowed)) {
             case 'profile':
             case 'auth':
             case 'map':
+            case 'admin':
                 break;
             case 'hikes':
                 $confParams[] = \App\Models\Hike::select('string_id')->get()->lists('string_id')->toArray();
@@ -117,10 +140,12 @@ if (!empty($confAloowed) && $action != null) {
          */
         if (!empty($param1) && in_array($param1, $confParams) && $action == $v) {
 //echo 'IF 1  '.$v.' | '.$param1; exit;
-            Route::match(['get','post'], $v . '/{string_id}', function () {
+            Route::match(['get','post'], $v . '/' . $param1, function ($v) {
                 return view("layout", [
                     'html' => view('partials.entry'),
-                    'add' => view('partials.add')
+                    'add' => view('partials.add'),
+                    'partial' => $v,
+                    'preload_resource' => '<div data-preload-resource="/api/v1/hikes/'.$param1.'">#{resource}</div>'
                 ]);
             })->where(['string_id' => '[a-z0-9-_]+']);
         }
@@ -158,7 +183,7 @@ if (!empty($confAloowed) && $action != null) {
                     $part = 'about';
                     break;
                 case 'login':
-                    $part = 'login';
+                    $part = 'login-page';
                     break;
                 case 'logout':
                     $part = 'logout';
@@ -172,10 +197,18 @@ if (!empty($confAloowed) && $action != null) {
                 case 'search':
                     $part = 'search';
                     break;
+                case 'admin':
+                    $part = 'admin';
+                    break;
+                case 'hikes':
+                    $part = 'entry';
+                    break;
             }
+
             return view("layout", [
                     'html' => view('partials.'.$part),
-                    'add' => view('partials.add')
+                    'add' => view('partials.add'),
+                    'partial' => $part
                 ]);
         });
     }

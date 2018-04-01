@@ -55,7 +55,7 @@ angular
       }).
       when("/login", {
         controller: "LoginController",
-        templateUrl: "/partials/login.html",
+        templateUrl: "/partials/login-page.html",
         title: "Log In - showybulgaria.com",
         resolve: {
           skipIfLoggedIn: skipIfLoggedIn
@@ -219,7 +219,7 @@ angular
       $http.get("/partials/photo_stream.html",  { cache: $templateCache });
       $http.get("/partials/map.html",           { cache: $templateCache });
       $http.get("/partials/search.html",        { cache: $templateCache });
-      // $http.get("/partials/login.html",         { cache: $templateCache });
+      $http.get("/partials/login-page.html",         { cache: $templateCache });
       // $http.get("/partials/signup.html",        { cache: $templateCache });
       $http.get("/api/v1/hikes?fields=distance,is_featured,locality,name,photo_facts,photo_landscape,photo_preview,string_id", { cache: resourceCache} );
 //      $http.get("/data/index.json", { cache: resourceCache} );

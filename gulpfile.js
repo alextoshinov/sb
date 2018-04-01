@@ -19,26 +19,27 @@ require('laravel-elixir-livereload');
  	'jquery'   :'./bower_components/jquery/',
     'modernizr':'./bower_components/modernizr/',
  	'bootstrap':'./bower_components/bootstrap-sass-official/assets/',
-    'angular'  :'./bower_components/angular/'
+    'angular'  :'./bower_components/angular/',
+    'fontawesome':'./bower_components/font-awesome/'
  }
 
 elixir(function(mix) {
     mix
-        //.copy(paths.bootstrap + 'stylesheets/**', './resources/assets/sass/bootstrap')
-    	//.copy(paths.bootstrap + 'fonts/bootstrap/**', 'public/fonts')
+        .copy(paths.bootstrap + 'stylesheets/**', './resources/assets/sass/bootstrap')
+    	.copy(paths.bootstrap + 'fonts/bootstrap/**', 'public/fonts')
 
-        
-    	.compass("frontend/app.scss", 'resources/assets/css', {
+        // .sass('*.scss', 'public/css/', {includePaths: [paths.bootstrap + 'stylesheets', paths.fontawesome + 'scss']})
+    	.compass("frontend/style.scss", 'resources/assets/css', {
             config_file: "config.rb",
-    		style: "nested",
+    		style: "compressed", //nested
     		sass: "resources/assets/sass",
             font: "public/fonts",
-
-            
+            image: "public/img",
+            javascript: "public/js",
+            sourcemap: true            
     	})
         .styles([
-            'frontend/app.css',
-            'frontend/angular-toastr.css'
+            'frontend/style.css'
          ], 'public/css/frontend.css')
         
         /*

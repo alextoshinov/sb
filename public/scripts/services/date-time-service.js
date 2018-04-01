@@ -6,7 +6,7 @@ angular.module("showyBulgariaApp").
 		var DateTimeService = function() {
 		};
 
-		var convertToDate = function(input) {
+		var convertToDate = function(input) {	
 			if (input instanceof $window.Date) {
 				return input;
 			} else if (typeof input === "string") {

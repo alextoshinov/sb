@@ -1,0 +1,68 @@
+<pre>Array
+(
+    [id] => 1
+    [string_id] => rayskoto-prskalo
+    [location_id] => 1
+    [photo_facts_id] => 2
+    [photo_landscape_id] => 1
+    [photo_preview_id] => 
+    [name] => Райското пръскало
+    [description] => Райско пръскало, Калоферско пръскало или Голям джендемски водопад е водопад, намиращ се на Пръскалска река, ляв приток на Бяла река.[1] Той е най-високият постоянен водопад на Балканския полуостров. Разположен е в Стара планина под връх Ботев. Намира се в Национален парк „Централен Балкан“, в природния резерват Джендема. Събира води от снежните преспи, разположени под върха, които образуват река Пръскалска, и има височина 124,5 метра. Водопадът дава началото на приток на Бяла река, чийто водосбор влиза в резерват Джендема. В подножието на водопада се намира хижа Рай – изходен пункт за посещението му. Местността и природата са впечатляващи, а скалите привличат много любители на скалното катерене. И независимо от това, че е посещаван от многобройни туристи, водопадът и местността са запазили непокътнатия си и чист облик.
+    [locality] => Стара планина, БГ
+    [permit] => 
+    [route] => 
+    [distance] => 240
+    [elevation_gain] => 60
+    [elevation_max] => 2230
+    [create_at] => 2018-03-22 21:26:18
+    [update_at] => 2018-03-22 21:26:18
+    [is_featured] => 1
+    [location] => Array
+        (
+            [id] => 1
+            [latitude] => 42.72
+            [longitude] => 24.92
+        )
+
+    [photo_landscape] => Array
+        (
+            [id] => 1
+            [string_id] => rayskoto-prskalo/5f1cbaad-3e47-4039-b97a-e0abc58fe635
+            [width] => 1200
+            [height] => 900
+            [alt] => rayskoto-prskalo
+            [attribution_link] => 
+        )
+
+    [photo_facts] => Array
+        (
+            [id] => 2
+            [string_id] => rayskoto-prskalo/3b102f20-48d4-4cae-afc0-745bfe5142fd
+            [width] => 1024
+            [height] => 768
+            [alt] => rayskoto-prskalo
+            [attribution_link] => 
+        )
+
+    [photo_preview] => 
+    [photos_generic] => Array
+        (
+            [0] => Array
+                (
+                    [id] => 3
+                    [string_id] => rayskoto-prskalo/3207a124-5d56-4810-8dc3-9a37c1d4e161
+                    [width] => 1024
+                    [height] => 683
+                    [alt] => rayskoto-prskalo
+                    [attribution_link] => 
+                    [pivot] => Array
+                        (
+                            [hike_id] => 1
+                            [photo_id] => 3
+                        )
+
+                )
+
+        )
+
+)

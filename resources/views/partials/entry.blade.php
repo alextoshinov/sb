@@ -1,4 +1,4 @@
-<script type='text/ng-template' id='/partials/entry.html'>
+
 <div class="banner edit-banner" data-static-html-hidden="true" data-ng-show="isEditing" data-ng-class="{'edit-banner-review': isBeingReviewed}">
 	<h3 data-ng-show="error" data-ng-bind="error"></h3>
 	<h3 data-ng-show="!error &amp;&amp; !isBeingReviewed">You are editing this page.</h3>
@@ -201,4 +201,4 @@
 		</section>
 	</div>
 </article>
-</script>
+

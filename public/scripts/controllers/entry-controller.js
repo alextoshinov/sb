@@ -42,6 +42,8 @@ angular.module("showyBulgariaApp").controller("EntryController",
 		for (var i = 0; $scope.hike.photos_generic && i < $scope.hike.photos_generic.length; i++) {
 			$scope.local_photos_generic.push($scope.hike.photos_generic[i]);
 		}
+
+		console.log('scope: ',$scope.hike.photo_landscape);
 	};
 
 	var parseToFloatOrZero = function(str) {
@@ -139,7 +141,9 @@ angular.module("showyBulgariaApp").controller("EntryController",
 	$http({method: "GET", url: "/api/v1/hikes/" + $routeParams.hikeId, cache:resourceCache}).
 		success(function(data, status, headers, config) {
 			var hike = data;
+			
 			var cachedHike = persistentStorage.get(routeId);
+			console.log('routeId: ', hike, cachedHike);
 			if (status === 202) {
 				if (!cachedHike) {
 					$log.error(data, status, headers, config);
@@ -150,7 +154,8 @@ angular.module("showyBulgariaApp").controller("EntryController",
 				hike = cachedHike;
 			} else if (status === 200) {
 				if (cachedHike) {
-					if (dateTime.after(data.edit_time, cachedHike.edit_time)) {
+					
+					if (dateTime.after(data.update_at, cachedHike.update_at)) {
 						persistentStorage.remove(routeId);
 					} else {
 						hike = cachedHike;
@@ -159,6 +164,7 @@ angular.module("showyBulgariaApp").controller("EntryController",
 			}
 
 			$scope.hike = angular.copy(hike);
+			console.log('Entry Controller: ',$scope.hike);
 			if (!$scope.isEditing && $scope.hike.description) {
 				$scope.hike.description = makeUnitsClickable($scope.hike.description);
 			}
@@ -220,6 +226,7 @@ angular.module("showyBulgariaApp").controller("EntryController",
 				$scope.isJustAdded = false;
 				$scope.isSaving = false;
 				$scope.hike = data;
+				console.log('Entry Controller 226 : ',$scope.hike);
 				if (status === 200) {
 					resourceCache.put("/api/v1/hikes/" + $scope.hike.string_id, jQuery.extend(true, {}, $scope.hike));
 					resourceCache.removeAllWithRoot("/api/v1/hikes");

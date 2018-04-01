@@ -1,38 +1,51 @@
-<article class="login-page" data-ng-controller="LoginController">
-    <div class="center-form panel">
-      <div class="panel-body">
-        
-        <form method="post" ng-submit="login()" name="loginForm">
-            <h2 class="text-center">Log in</h2>
-          <div class="form-group has-feedback">
-            <input class="form-control input-lg" type="text" name="email" ng-model="user.email" placeholder="Email" required autofocus>
-            <span class="ion-at form-control-feedback"></span>
-          </div>
-          <div class="form-group has-feedback">
-            <input class="form-control input-lg" type="password" name="password" ng-model="user.password" placeholder="Password" required>
-            <span class="ion-key form-control-feedback"></span>
-          </div>
-          <button type="submit" ng-disabled="loginForm.$invalid" class="btn btn-block btn-success">Log in</button>
-          <br/>
-          <p class="text-center text-muted">
-            <small>Don't have an account yet? <a href="/signup">Sign up</a></small>
-          </p>
-          <div class="signup-or-separator">
-            <h6 class="text">or</h6>
-            <hr>
-          </div>
-        
-        <button class="btn btn-block btn-social btn-facebook" ng-click="authenticate('facebook')">
-          <i class="fa fa-facebook"></i> Sign in with Facebook
-        </button>
-        <button class="btn btn-block btn-google-plus" ng-click="authenticate('google')">
-          <span class="ion-social-googleplus"></span>Sign in with Google
-        </button>
-
-        <button class="btn btn-block btn-instagram" ng-click="authenticate('instagram')">
-          <i class="ion-social-instagram"></i> Sign in with Instagram
-        </button>
-        </form>
-      </div>
+<article class="login-page" data-ng-controller="LoginController">  
+  <div class="login-box">
+    <div class="login-logo">
+      <a href="../../index2.html"><b>Admin</b>LTE</a>
     </div>
-</article>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+      <p class="login-box-msg">Sign in to start your session</p>
+
+      <form action="../../index2.html" method="post">
+        <div class="form-group has-feedback">
+          <input type="email" class="form-control" placeholder="Email">
+          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        </div>
+        <div class="form-group has-feedback">
+          <input type="password" class="form-control" placeholder="Password">
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+        <div class="row">
+          <div class="col-xs-8">
+            <div class="checkbox icheck">
+              <label>
+                <input type="checkbox"> Remember Me
+              </label>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-xs-4">
+            <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+      <div class="social-auth-links text-center">
+        <p>- OR -</p>
+        <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
+          Facebook</a>
+        <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
+          Google+</a>
+      </div>
+      <!-- /.social-auth-links -->
+
+      <a href="#">I forgot my password</a><br>
+      <a href="register.html" class="text-center">Register a new membership</a>
+
+    </div>
+    <!-- /.login-box-body -->
+  </div>
+  <!-- /.login-box -->
+</article>  

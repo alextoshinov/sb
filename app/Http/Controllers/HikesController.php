@@ -16,7 +16,9 @@ use App\Models\Location;
 use App\Models\Keyword;
 use App\Models\Photo;
 use App\Models\User;
+use App\Models\Review;
 use Firebase\JWT\JWT;
+use Config;
 
 class HikesController extends Controller
 {
@@ -67,72 +69,9 @@ class HikesController extends Controller
     {
         $fields = $request->input('fields');
 
-//        echo 'fields: '.$fields;
-        return Hike::where('is_featured', true)->with('location','photos_generic','photo_facts','photo_landscape','photo_preview')->get();
-        
-//        return  File::get(public_path().'/data/hikes.json');
-//        $hikesArr = json_decode($json, true);
-
-//        foreach ($hikesArr as $k => $v) 
-//        {
-//            $hike = new Hike();
-//            $photo = new Photo();
-//            $hike->string_id = $v['string_id'];
-//            $hike->distance = $v['distance'];
-//            $hike->is_featured = $v['is_featured'];
-//            $hike->locality = $v['locality'];
-//            $hike->name = $v['name'];
-//            
-//            if(array_key_exists("photo_facts",$v))
-//            {			
-//                foreach($v['photo_facts'] as $facts)
-//                {
-//                    $hike->photo_facts_id = $facts['id'];
-//                    $hike->photos()->attach($facts['id']);
-//                    $photo->id = $facts['id'];
-//                    $photo->string_id = $facts['string_id'];
-//                    $photo->alt = $facts['alt'];
-//                    $photo->width = $facts['width'];
-//                    $photo->height = $facts['height'];
-//                    $photo->attribution_link = $facts['attribution_link'];
-//                }
-//            }		
-//            //
-//            if(array_key_exists("photo_landscape",$v))
-//            {
-//                foreach($v['photo_landscape'] as $landscape)
-//                {
-//                    $hike->photo_landscape_id = $landscape['id'];
-//                    $hike->photos()->attach($landscape['id']);
-//                    $photo->id = $landscape['id'];
-//                    $photo->string_id = $landscape['string_id'];
-//                    $photo->alt = $landscape['alt'];
-//                    $photo->width = $landscape['width'];
-//                    $photo->height = $landscape['height'];
-//                    $photo->attribution_link = $landscape['attribution_link'];
-//                }
-//            }
-//            //
-//            if(array_key_exists("photo_landscape",$v))
-//            {
-//                foreach($v['photo_preview'] as $preview)
-//                {
-//                    $hike->photo_preview_id = $preview['id'];
-//                    $hike->photos()->attach($preview['id']);
-//                    $photo->id = $preview['id'];
-//                    $photo->string_id = $preview['string_id'];
-//                    $photo->alt = $preview['alt'];
-//                    $photo->width = $preview['width'];
-//                    $photo->height = $preview['height'];
-//                    $photo->attribution_link = $preview['attribution_link'];
-//                }
-//            }
-//        $hike->save();    
-//        $photo->save();
-
-//        echo 'Hike '.$k.' is saved! '.$v ;
-//        }
-
+//        echo 'fields: '.$fields; exit;
+        $hikes = Hike::where('is_featured', true)->with('location','photos_generic','photo_facts','photo_landscape','photo_preview')->get()->toArray();
+        return response()->json($hikes);
     }
     //
     public function search(Request $request)
@@ -204,7 +143,8 @@ class HikesController extends Controller
         $hike->elevation_gain = $request->input('elevation_gain');
         $hike->elevation_max = $request->input('elevation_max');
         $hike->locality = $request->input('locality');
-        $hike->creation_time = date("Y-m-d H:i:s");       
+        $hike->created_at = date("Y-m-d H:i:s");
+        $hike->updated_at = date("Y-m-d H:i:s");
         $hike->save();
         //
         $parts = $pieces = explode("-", $hike->string_id);
@@ -229,69 +169,134 @@ class HikesController extends Controller
                 ->header('Hikeio-Hike-String-Id', $hike->string_id);
     }
     //
-    public function update(Request $request, $id)
+    public function update(Request $request, $string_id)
     {
         $user = User::find($request['user']['sub']);
-        echo '<pre>'; print_r($user);
+        $hike = Hike::where('string_id',$string_id)->first();
+        $hike->name = $request['name'];
+        $hike->description = $request['description'];
+        $hike->locality = $request['locality'];
+        $hike->permit = $request['permit'];
+        $hike->route = $request['route'];
+        $hike->distance = $request['distance'];
+        $hike->elevation_gain = $request['elevation_gain'];
+        $hike->elevation_max = $request['elevation_max'];
+        $hike->updated_at = date("Y-m-d H:i:s");
+        $hike->save();
+        return $hike;
+    }
+    //
+    public function reviews(Request $request)
+    {
+        if (isset($request['string_id']) && isset($request['action'])) {
+            $review = Review::where('string_id', $request['string_id'])->first();
+            $review->status = $request['action'] == 'accept' ? 'accepted':'unreviewed';
+            $review->save();
+        } else {
+            return Review::where('status','unreviewed')->get();
+        }
     }
     //
     public function upload(Request $request, $hike_id) 
     {
+
 //        $user = User::find($request['user']['sub']);
-        $uuid = Uuid::generate(4);
-//        dd($uuid->string);
         $hike = Hike::where('string_id',$hike_id)->first();
+
+
+        $uuid = Uuid::generate(4);
+
         $type = $request['type'];
         //define the image paths
         $store_path = 'hike-images/';
         $hike_img_dir      =   public_path('hike-images/'. $hike_id. '/');
         //
-        if(Input::hasFile('file')) {
-            $image = Input::file('file'); 
-//            $tmpFileName = $image->getClientOriginalName(); //real name
-            $tmpFileName = $uuid . '.' . $image->getClientOriginalExtension();
-            $image->move($hike_img_dir, $tmpFileName);
-            $img = Image::make($hike_img_dir . $tmpFileName);
-            $width = Image::make($hike_img_dir . $tmpFileName)->width();
-            $height = Image::make($hike_img_dir . $tmpFileName)->height();
+        if(Input::hasFile('file') && isset($hike)) {
             $photo = new Photo();
             $photo->string_id = $hike_id. '/'. $uuid;
-            $photo->width = $width;
-            $photo->height = $height;
             $photo->alt = $hike_id;
             $photo->attribution_link = null;
             $photo->save();
+            $image = Input::file('file');
             switch($type)
             {
                 case "landscape":
-                        $hike->photo_landscape_id = $photo->id;                        
+                        $original = $uuid . '-original.' . $image->getClientOriginalExtension();
+                        $image->move($hike_img_dir, $original);
+                        $width = Image::make($hike_img_dir . $original)->width();
+                        $height = Image::make($hike_img_dir . $original)->height();
+                        $photo->width = $width;
+                        $photo->height = $height;
+                        $photo->save();
+                        //
+                        $large = $uuid . '-large.' . $image->getClientOriginalExtension();
+                        Image::make($hike_img_dir . $original)->resize(1200, 1200)->save($hike_img_dir . $large);
+                        $medium = $uuid . '-medium.' . $image->getClientOriginalExtension();
+                        Image::make($hike_img_dir . $original)->resize(800, 800)->save($hike_img_dir . $medium);
+                        $small = $uuid . '-small.' . $image->getClientOriginalExtension();
+                        Image::make($hike_img_dir . $original)->resize(400, 400)->save($hike_img_dir . $small);
+                        $tiny = $uuid . '-tiny.' . $image->getClientOriginalExtension();
+                        Image::make($hike_img_dir . $original)->resize(200, 200)->save($hike_img_dir . $tiny);
+                        $hike->photo_landscape_id = $photo->id;
                         $hike->save();
                         break;
                 case "facts":
+                        $original = $uuid . '-original.' . $image->getClientOriginalExtension();
+                        $image->move($hike_img_dir, $original);
+                        $width = Image::make($hike_img_dir . $original)->width();
+                        $height = Image::make($hike_img_dir . $original)->height();
+                        $photo->width = $width;
+                        $photo->height = $height;
+                        $photo->save();
+                        //
+                        $thumb_medium = $uuid . '-thumb-medium.' . $image->getClientOriginalExtension();
+                        Image::make($hike_img_dir . $original)->resize(800, 800)->save($hike_img_dir . $thumb_medium);
+                        $thumb_small = $uuid . '-thumb-small.' . $image->getClientOriginalExtension();
+                        Image::make($hike_img_dir . $original)->resize(400, 400)->save($hike_img_dir . $thumb_small);
+                        $thumb_tiny = $uuid . '-thumb-tiny.' . $image->getClientOriginalExtension();
+                        Image::make($hike_img_dir . $original)->resize(200, 200)->save($hike_img_dir . $thumb_tiny);
                         $hike->photo_facts_id = $photo->id;
                         $hike->save();
                         break;
                 case "preview":
+                        $original = $uuid . '-original.' . $image->getClientOriginalExtension();
+                        $image->move($hike_img_dir, $original);
+                        $width = Image::make($hike_img_dir . $original)->width();
+                        $height = Image::make($hike_img_dir . $original)->height();
+                        $photo->width = $width;
+                        $photo->height = $height;
+                        $photo->save();
+                        //
+                        $thumb_medium = $uuid . '-thumb-medium.' . $image->getClientOriginalExtension();
+                        Image::make($hike_img_dir . $original)->resize(800, 800)->save($hike_img_dir . $thumb_medium);
+                        $thumb_small = $uuid . '-thumb-small.' . $image->getClientOriginalExtension();
+                        Image::make($hike_img_dir . $original)->resize(400, 400)->save($hike_img_dir . $thumb_small);
+                        $thumb_tiny = $uuid . '-thumb-tiny.' . $image->getClientOriginalExtension();
+                        Image::make($hike_img_dir . $original)->resize(200, 200)->save($hike_img_dir . $thumb_tiny);
                         $hike->photo_preview_id = $photo->id;
+                        $hike->save();
                         break;
                 case "generic":
+                        $original = $uuid . '-original.' . $image->getClientOriginalExtension();
+                        $image->move($hike_img_dir, $original);
+                        $width = Image::make($hike_img_dir . $original)->width();
+                        $height = Image::make($hike_img_dir . $original)->height();
+                        $photo->width = $width;
+                        $photo->height = $height;
+                        $photo->save();
+                        //
+                        $thumb_medium = $uuid . '-thumb-medium.' . $image->getClientOriginalExtension();
+                        Image::make($hike_img_dir . $original)->resize(800, 800)->save($hike_img_dir . $thumb_medium);
+                        $thumb_small = $uuid . '-thumb-small.' . $image->getClientOriginalExtension();
+                        Image::make($hike_img_dir . $original)->resize(400, 400)->save($hike_img_dir . $thumb_small);
+                        $thumb_tiny = $uuid . '-thumb-tiny.' . $image->getClientOriginalExtension();
+                        Image::make($hike_img_dir . $original)->resize(200, 200)->save($hike_img_dir . $thumb_tiny);
                         $hike->photos_generic()->attach($photo->id);
+                        $hike->save();
                         break;
             }
             
- //           echo '<pre>'; print_r($img);exit;
-//            $tmpFileName = $image->getClientOriginalName() . '.' . $image->getClientOriginalExtension();
-
-            //
-
-            
-            
-//            Image::make($image->getRealPath())->save($path);
-//            Image::make($image->getRealPath())->resize(300, 200)->save($thumb);
-//            Image::make($image->getRealPath())->resize(144, 144)->save($mobile);
-
-
-            $relativePath = $store_path . $tmpFileName;
+            $relativePath = $store_path . $original;
               return response()->json(array('path'=> $relativePath), 200);
         } else {
               return response()->json(false, 200);

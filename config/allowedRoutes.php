@@ -25,6 +25,7 @@ return [
         'search',
         'discover',
         'map',
+        'admin',
         'partials/map',
         'partials/discover'
         

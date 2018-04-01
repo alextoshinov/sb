@@ -1,12 +1,12 @@
-	<article class="map-page" data-meta-description="Find hikes nearby and around the world using the full screen map." data-ng-class="{'showBanner': showBanner }">
-		<div class="tooltip">
-			<h3 class="name"></h3>
-			<h4><span class="distance"></span> <span class="units" data-ng-bind="preferences.useMetric &amp;&amp; 'km.' || 'mi.'"></span></h4>
-		</div>
-		<div class="banner">
-			<h3>{{bannerString}}</h3>
-		</div>
-		<div class="map-container" data-ui-map="map" data-ui-options="mapOptions" data-ui-event="{'map-idle': 'mapMoved($event)', 'map-zoom_changed': 'mapMoved($event)', 'map-center_changed': 'mapMoved($event)','map-click': 'mapClicked($event)'}"></div>
-		<div ng-repeat="marker in markers" ui-map-marker="markers[$index]" ui-event="{'map-mousedown': 'markerClicked(marker)', 'map-mouseover': 'markerMousedOver(marker)', 'map-mouseout': 'markerMousedOut(marker)'}"></div>
-	</article>
+<article class="map-page" data-meta-description="Find hikes nearby and around the world using the full screen map." data-ng-class="{'showBanner': showBanner }">
+	<div class="tooltip">
+		<h3 class="name"></h3>
+		<h4><span class="distance"></span> <span class="units" data-ng-bind="preferences.useMetric &amp;&amp; 'km.' || 'mi.'"></span></h4>
+	</div>
+	<div class="banner">
+		<h3>{{bannerString}}</h3>
+	</div>
+	<div class="map-container" data-ui-map="map" data-ui-options="mapOptions" data-ui-event="{'map-idle': 'mapMoved($event)', 'map-zoom_changed': 'mapMoved($event)', 'map-center_changed': 'mapMoved($event)','map-click': 'mapClicked($event)'}"></div>
+	<div ng-repeat="marker in markers" ui-map-marker="markers[$index]" ui-event="{'map-mousedown': 'markerClicked(marker)', 'map-mouseover': 'markerMousedOver(marker)', 'map-mouseout': 'markerMousedOut(marker)'}"></div>
+</article>
 

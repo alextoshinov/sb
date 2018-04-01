@@ -1,0 +1,16 @@
+@import "_vars";
+@import "_mixins";
+// @import "bootstrap-social";
+
+.signup-page {
+    div {
+        display: inline-block;
+    }
+    #email, #password {
+        margin-top: 0px;
+        width: 128px;
+        margin-top: 0px;
+        margin-right: 5px;
+        display: inline;
+    }
+}
