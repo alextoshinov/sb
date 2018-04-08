@@ -42,8 +42,6 @@ angular.module("showyBulgariaApp").controller("EntryController",
 		for (var i = 0; $scope.hike.photos_generic && i < $scope.hike.photos_generic.length; i++) {
 			$scope.local_photos_generic.push($scope.hike.photos_generic[i]);
 		}
-
-		console.log('scope: ',$scope.hike.photo_landscape);
 	};
 
 	var parseToFloatOrZero = function(str) {
@@ -56,6 +54,7 @@ angular.module("showyBulgariaApp").controller("EntryController",
 
 	var normalizeHikeBeforeSave = function() {
 		var hike = $scope.hike;
+		console.log('Entry controller: ', hike);
 		// Firefox's contenteditable implementation can change these properties to strings, normalize them before uploading
 		if (typeof hike.distance !== "number")				hike.distance = parseToFloatOrZero(hike.distance);
 		if (typeof hike.elevation_gain !== "number")		hike.elevation_gain = parseToFloatOrZero(hike.elevation_gain);
@@ -138,12 +137,18 @@ angular.module("showyBulgariaApp").controller("EntryController",
 	};
 
 	var routeId = "/api/v1/hikes/" + $routeParams.hikeId;
-	$http({method: "GET", url: "/api/v1/hikes/" + $routeParams.hikeId, cache:resourceCache}).
+	$http({
+		method: "GET", 
+		url: "/api/v1/hikes/" + $routeParams.hikeId, 
+		// cache:resourceCache,
+		headers: {
+           'Content-Type': 'json'
+         }
+	}).
 		success(function(data, status, headers, config) {
 			var hike = data;
-			
+			console.log('data: ', data);
 			var cachedHike = persistentStorage.get(routeId);
-			console.log('routeId: ', hike, cachedHike);
 			if (status === 202) {
 				if (!cachedHike) {
 					$log.error(data, status, headers, config);
@@ -154,8 +159,7 @@ angular.module("showyBulgariaApp").controller("EntryController",
 				hike = cachedHike;
 			} else if (status === 200) {
 				if (cachedHike) {
-					
-					if (dateTime.after(data.update_at, cachedHike.update_at)) {
+					if (dateTime.after(data.edit_time, cachedHike.edit_time)) {
 						persistentStorage.remove(routeId);
 					} else {
 						hike = cachedHike;
@@ -164,7 +168,6 @@ angular.module("showyBulgariaApp").controller("EntryController",
 			}
 
 			$scope.hike = angular.copy(hike);
-			console.log('Entry Controller: ',$scope.hike);
 			if (!$scope.isEditing && $scope.hike.description) {
 				$scope.hike.description = makeUnitsClickable($scope.hike.description);
 			}
@@ -226,7 +229,6 @@ angular.module("showyBulgariaApp").controller("EntryController",
 				$scope.isJustAdded = false;
 				$scope.isSaving = false;
 				$scope.hike = data;
-				console.log('Entry Controller 226 : ',$scope.hike);
 				if (status === 200) {
 					resourceCache.put("/api/v1/hikes/" + $scope.hike.string_id, jQuery.extend(true, {}, $scope.hike));
 					resourceCache.removeAllWithRoot("/api/v1/hikes");
@@ -473,8 +475,8 @@ angular.module("showyBulgariaApp").controller("EntryController",
 			});
 		} else {
 			$timeout(function() {
+				console.log('entry 472: ', $scope.hike);
 				google.maps.event.trigger($scope.map, "resize");
-				console.log($scope.hike);
 				$scope.map.setCenter(new google.maps.LatLng($scope.hike.location.latitude, $scope.hike.location.longitude));
 				$scope.map.setZoom(13);
 			});
@@ -500,34 +502,49 @@ angular.module("showyBulgariaApp").controller("EntryController",
 		// it before it's actually been process by the backend. If that happends, simply don't process
 		// the photo in doUploadPhoto's callback.
 		var removedPhoto = null;
+
 		switch (type) {
-		case "landscape":
-			removedPhoto = $scope.local_photo_landscape;
-			$scope.hike.photo_landscape = null;
-			$scope.local_photo_landscape = null;
-			break;
-		case "facts":
-			removedPhoto = $scope.local_photo_facts;
-			$scope.hike.photo_facts = null;
-			$scope.local_photo_facts = null;
-			break;
-		case "preview":
-			removedPhoto = $scope.local_photo_preview;
-			$scope.hike.photo_preview = null;
-			$scope.local_photo_preview = null;
-			break;
-		case "generic":
-			removedPhoto = $scope.local_photos_generic.splice(index, 1)[0];
-			for (var i = 0; i < $scope.hike.photos_generic.length; i++) {
-				var photo = $scope.hike.photos_generic[i];
-				if (($scope.isPhotoDataUriEncoded(removedPhoto) && uploadedPhotoIdMap[removedPhoto.id] === photo) ||
-					(!$scope.isPhotoDataUriEncoded(removedPhoto) && photo.string_id === removedPhoto.string_id)) {
-					$scope.hike.photos_generic.splice(i, 1);
-					break;
+			case "landscape":
+				removedPhoto = $scope.local_photo_landscape;
+				$scope.hike.photo_landscape = null;
+				$scope.local_photo_landscape = null;
+				break;
+			case "facts":
+				removedPhoto = $scope.local_photo_facts;
+				$scope.hike.photo_facts = null;
+				$scope.local_photo_facts = null;
+				break;
+			case "preview":
+				removedPhoto = $scope.local_photo_preview;
+				$scope.hike.photo_preview = null;
+				$scope.local_photo_preview = null;
+				break;
+			case "generic":
+				removedPhoto = $scope.local_photos_generic.splice(index, 1)[0];
+				for (var i = 0; i < $scope.hike.photos_generic.length; i++) {
+					var photo = $scope.hike.photos_generic[i];
+					if (($scope.isPhotoDataUriEncoded(removedPhoto) && uploadedPhotoIdMap[removedPhoto.id] === photo) ||
+						(!$scope.isPhotoDataUriEncoded(removedPhoto) && photo.string_id === removedPhoto.string_id)) {
+						$scope.hike.photos_generic.splice(i, 1);
+						break;
+					}
 				}
-			}
-			break;
+				break;
 		}
+		console.log('534: ', type, index, removedPhoto);
+		if(removedPhoto && removedPhoto.id) {
+			$http({
+				method: "POST",
+				url: "/api/v1/photos/" + removedPhoto.id + '/' + type,
+				data: removedPhoto,
+				headers: { "Content-Type": "application/json" }
+			})
+			.success(function(data) {
+				console.log(data);
+			})
+			.error();
+		}
+		
 
 		// If this photo hasn't yet finished uploading, cancel it
 		if ($scope.isPhotoDataUriEncoded(removedPhoto) && !uploadedPhotoIdMap[removedPhoto.id]) {

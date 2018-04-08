@@ -70,6 +70,13 @@ class Hike extends Model
     }
     
     //
-    
+    public function users()
+    {
+        return $this->belongsToMany('App\Models\User', 'hikes_users')
+//            ->with('games','profile')
+            ->withPivot('created_at')
+            ->orderBy('created_at', 'desc')
+            ;
+    }
     //
 }

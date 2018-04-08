@@ -74,10 +74,11 @@ Route::group(['prefix' => 'api/v1'], function() {
     Route::get('hikes', 'HikesController@index');
     Route::get('hikes/search', 'HikesController@search');
     Route::get('hikes/{hike_id}', 'HikesController@show');
-    Route::post('hikes', 'HikesController@store');
-    Route::post('hikes/{hike_id}/photos', 'HikesController@upload');
-    Route::put('hikes/{hike_id}', 'HikesController@update');
+    Route::post('hikes', ['middleware' => 'auth', 'uses' => 'HikesController@store']);
+    Route::post('hikes/{hike_id}/photos', ['middleware' => 'auth', 'uses' =>  'HikesController@upload']);
+    Route::put('hikes/{hike_id}', ['middleware' => 'auth', 'uses' =>  'HikesController@update']);
     Route::get('reviews', 'HikesController@reviews');
+    Route::post('photos/{id}/{type}', ['middleware' => 'auth', 'uses' =>  'PhotoController@delete']);
 });
 
 // http://localhost:8000/api/v1/hikes/search?fields=locality,name,photo_facts,string_id&q=rajsko+pruskalo
@@ -139,15 +140,15 @@ if (!empty($confAloowed) && $action != null) {
          *  where has params (id, lang)
          */
         if (!empty($param1) && in_array($param1, $confParams) && $action == $v) {
-//echo 'IF 1  '.$v.' | '.$param1; exit;
-            Route::match(['get','post'], $v . '/' . $param1, function ($v) {
-                return view("layout", [
-                    'html' => view('partials.entry'),
-                    'add' => view('partials.add'),
-                    'partial' => $v,
-                    'preload_resource' => '<div data-preload-resource="/api/v1/hikes/'.$param1.'">#{resource}</div>'
-                ]);
-            })->where(['string_id' => '[a-z0-9-_]+']);
+// echo 'IF 1  '.$v.' | '.$param1; exit;
+            // Route::match(['get','post'], $v . '/' . $param1, function ($v) {
+            //     return view("layout", [
+            //         'html' => view('partials.entry'),
+            //         'add' => view('partials.add'),
+            //         'partial' => $v,
+            //         'preload_resource' => '<div data-preload-resource="/api/v1/hikes/'.$param1.'">#{resource}</div>'
+            //     ]);
+            // })->where(['string_id' => '[a-z0-9-_]+']);
         }
         //
         if (!empty($param1) && in_array($param1, $confParams) && $action == $v) {

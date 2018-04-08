@@ -136,7 +136,7 @@
 				<div data-ng-show="isEditing || hike.description" data-give-focus="hike.description == null || hike.description == ''">
 					<div id="overview-description" class="overview-description" data-content-editable="isEditing" data-render-view="preferences.useMetric" data-compile="'[data-conversion]'" data-model="hike.description" data-change="isDirty = true"></div>
 				</div>
-				<div class="overview-description" data-ng-show="hike &amp;&amp; !hike.description &amp;&amp; !isEditing">
+				<div class="overview-description" data-ng-show="hike && !hike.description && !isEditing">
 					<p>Uh oh, this hike doesn't yet have a description, but you can fix that by <a href="/hikes/{{hike.string_id}}/edit">editing this page</a>.</p>
 				</div>
 			</div>

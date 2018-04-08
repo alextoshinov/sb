@@ -20,11 +20,24 @@ use App\Models\Review;
 use Firebase\JWT\JWT;
 use Config;
 
+/**
+ * Class HikesController
+ * @package App\Http\Controllers
+ */
 class HikesController extends Controller
 {
     //Define search
+    /**
+     *
+     */
     const KEYWORD_MATCH_THRESHOLD = 0.30;
+    /**
+     *
+     */
     const BEST_KEYWORD_THRESHOLD = 0.4;
+    /**
+     * @var null
+     */
     var $word_weight = null;
     //
     /**
@@ -39,8 +52,11 @@ class HikesController extends Controller
         ];
         return JWT::encode($payload, Config::get('app.token_secret'));
     }
-    //
 
+    /**
+     * @param $request
+     * @return bool
+     */
     protected function isAuthenticated($request) {
         if ($request->header('Authorization'))
         {
@@ -52,7 +68,11 @@ class HikesController extends Controller
             return false;
         }
     }
-    //
+
+    /**
+     * @param null $search_results
+     * @return bool
+     */
     protected function has_best_result($search_results = null)
     {
        if( count($search_results) == 1 or 
@@ -64,16 +84,22 @@ class HikesController extends Controller
        }
 	
     }
-    //
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index(Request $request)
     {
         $fields = $request->input('fields');
-
-//        echo 'fields: '.$fields; exit;
         $hikes = Hike::where('is_featured', true)->with('location','photos_generic','photo_facts','photo_landscape','photo_preview')->get()->toArray();
         return response()->json($hikes);
     }
-    //
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function search(Request $request)
     {
         $keywords = [];
@@ -106,18 +132,26 @@ class HikesController extends Controller
         
        return response()->json($keywords) ;
     }
-    //
+
+    /**
+     * @param $hike_id
+     * @return mixed
+     */
     public function show($hike_id)
     {
-//        return  File::get(public_path().'/data/salkantay-trek.json');
         $hike = Hike::where('string_id', $hike_id)->with('location','photo_landscape', 'photo_facts','photo_preview','photos_generic')->first();
         $hike->route = json_decode($hike->route);
         return $hike;
     }
-    //
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store(Request $request)
     {
-    	$validator = Validator::make($request->all(), [
+        $user = User::find($request['user']['sub']);
+        $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'distance' => 'numeric',
             'elevation_gain' => 'numeric',
@@ -146,6 +180,7 @@ class HikesController extends Controller
         $hike->created_at = date("Y-m-d H:i:s");
         $hike->updated_at = date("Y-m-d H:i:s");
         $hike->save();
+        $hike->users()->attach($user->id);
         //
         $parts = $pieces = explode("-", $hike->string_id);
         //Add keyword
@@ -161,14 +196,21 @@ class HikesController extends Controller
                 'keyword' => $parts[1]
             ]);
         }
-        
-        
-        
+        //
+        $token = $this->createToken($user);
+        //
     	return response('',202)
                 ->header('Content-Type', 'application/json')
-                ->header('Hikeio-Hike-String-Id', $hike->string_id);
+                ->header('Hikeio-Hike-String-Id', $hike->string_id)
+                ->json(['token' => $token])
+            ;
     }
-    //
+
+    /**
+     * @param Request $request
+     * @param $string_id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function update(Request $request, $string_id)
     {
         $user = User::find($request['user']['sub']);
@@ -183,9 +225,19 @@ class HikesController extends Controller
         $hike->elevation_max = $request['elevation_max'];
         $hike->updated_at = date("Y-m-d H:i:s");
         $hike->save();
-        return $hike;
+        //
+        $token = $this->createToken($user);
+        //
+        return response()->json([
+            'token' => $token,
+            'hike'  => $hike
+        ]);
     }
-    //
+
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function reviews(Request $request)
     {
         if (isset($request['string_id']) && isset($request['action'])) {
@@ -196,17 +248,21 @@ class HikesController extends Controller
             return Review::where('status','unreviewed')->get();
         }
     }
-    //
-    public function upload(Request $request, $hike_id) 
+
+    /**
+     * @param Request $request
+     * @param $hike_id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function upload(Request $request, $hike_id)
     {
-
-//        $user = User::find($request['user']['sub']);
+        $user = User::find($request['user']['sub']);
         $hike = Hike::where('string_id',$hike_id)->first();
-
 
         $uuid = Uuid::generate(4);
 
         $type = $request['type'];
+        $token = $this->createToken($user);
         //define the image paths
         $store_path = 'hike-images/';
         $hike_img_dir      =   public_path('hike-images/'. $hike_id. '/');
@@ -249,6 +305,15 @@ class HikesController extends Controller
                         $photo->height = $height;
                         $photo->save();
                         //
+                        $large = $uuid . '-large.' . $image->getClientOriginalExtension();
+                        Image::make($hike_img_dir . $original)->resize(1200, 1200)->save($hike_img_dir . $large);
+                        $medium = $uuid . '-medium.' . $image->getClientOriginalExtension();
+                        Image::make($hike_img_dir . $original)->resize(800, 800)->save($hike_img_dir . $medium);
+                        $small = $uuid . '-small.' . $image->getClientOriginalExtension();
+                        Image::make($hike_img_dir . $original)->resize(400, 400)->save($hike_img_dir . $small);
+                        $tiny = $uuid . '-tiny.' . $image->getClientOriginalExtension();
+                        Image::make($hike_img_dir . $original)->resize(200, 200)->save($hike_img_dir . $tiny);
+                        //
                         $thumb_medium = $uuid . '-thumb-medium.' . $image->getClientOriginalExtension();
                         Image::make($hike_img_dir . $original)->resize(800, 800)->save($hike_img_dir . $thumb_medium);
                         $thumb_small = $uuid . '-thumb-small.' . $image->getClientOriginalExtension();
@@ -267,12 +332,22 @@ class HikesController extends Controller
                         $photo->height = $height;
                         $photo->save();
                         //
+                        $large = $uuid . '-large.' . $image->getClientOriginalExtension();
+                        Image::make($hike_img_dir . $original)->resize(1200, 1200)->save($hike_img_dir . $large);
+                        $medium = $uuid . '-medium.' . $image->getClientOriginalExtension();
+                        Image::make($hike_img_dir . $original)->resize(800, 800)->save($hike_img_dir . $medium);
+                        $small = $uuid . '-small.' . $image->getClientOriginalExtension();
+                        Image::make($hike_img_dir . $original)->resize(400, 400)->save($hike_img_dir . $small);
+                        $tiny = $uuid . '-tiny.' . $image->getClientOriginalExtension();
+                        Image::make($hike_img_dir . $original)->resize(200, 200)->save($hike_img_dir . $tiny);
+                        //
                         $thumb_medium = $uuid . '-thumb-medium.' . $image->getClientOriginalExtension();
                         Image::make($hike_img_dir . $original)->resize(800, 800)->save($hike_img_dir . $thumb_medium);
                         $thumb_small = $uuid . '-thumb-small.' . $image->getClientOriginalExtension();
                         Image::make($hike_img_dir . $original)->resize(400, 400)->save($hike_img_dir . $thumb_small);
                         $thumb_tiny = $uuid . '-thumb-tiny.' . $image->getClientOriginalExtension();
                         Image::make($hike_img_dir . $original)->resize(200, 200)->save($hike_img_dir . $thumb_tiny);
+                        //
                         $hike->photo_preview_id = $photo->id;
                         $hike->save();
                         break;
@@ -284,6 +359,16 @@ class HikesController extends Controller
                         $photo->width = $width;
                         $photo->height = $height;
                         $photo->save();
+                        //
+                        //
+                        $large = $uuid . '-large.' . $image->getClientOriginalExtension();
+                        Image::make($hike_img_dir . $original)->resize(1200, 1200)->save($hike_img_dir . $large);
+                        $medium = $uuid . '-medium.' . $image->getClientOriginalExtension();
+                        Image::make($hike_img_dir . $original)->resize(800, 800)->save($hike_img_dir . $medium);
+                        $small = $uuid . '-small.' . $image->getClientOriginalExtension();
+                        Image::make($hike_img_dir . $original)->resize(400, 400)->save($hike_img_dir . $small);
+                        $tiny = $uuid . '-tiny.' . $image->getClientOriginalExtension();
+                        Image::make($hike_img_dir . $original)->resize(200, 200)->save($hike_img_dir . $tiny);
                         //
                         $thumb_medium = $uuid . '-thumb-medium.' . $image->getClientOriginalExtension();
                         Image::make($hike_img_dir . $original)->resize(800, 800)->save($hike_img_dir . $thumb_medium);
@@ -297,13 +382,26 @@ class HikesController extends Controller
             }
             
             $relativePath = $store_path . $original;
-              return response()->json(array('path'=> $relativePath), 200);
+              return response()->json([
+                  'token'   => $token,
+                  'path'    => $relativePath,
+                  'success' => true,
+                  'msg'     => 'The image has been uploaded successfully!'
+              ], 200);
         } else {
-              return response()->json(false, 200);
+              return response()->json([
+                  'token'   => $token,
+                  'success' => false,
+                  'msg'     => 'Error! The image has not been uploaded!'
+              ], 200);
         }
-        return response()->json(['hike_id' => $hike_id, 'request'=>$request->all(),'pic'=>$image->getClientOriginalName()]);
     }
-    //
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Model $model
+     * @param $value
+     * @return string
+     */
     protected function getUniqueSlug(\Illuminate\Database\Eloquent\Model $model, $value)
     {
         $slug = Str::slug($value);
@@ -311,10 +409,13 @@ class HikesController extends Controller
 
         return ($slugCount > 0) ? "{$slug}-{$slugCount}" : $slug;
     }
-    //
+
+    /**
+     * @param $rendition
+     * @return string
+     */
     protected function get_rendition_suffix($rendition)
     {
         return "-" + $rendition + ".jpg";
     }
-    //
 }
