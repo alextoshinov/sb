@@ -128,6 +128,11 @@
                     </a>
                 </div>
                 <div ng-if="isAuthenticated()">
+                    <div  data-header-entry data-label="Profile" data-url="/profile" data-align="left">
+                        @include('svg.sign-out')<img data-ui-if="!Modernizr.svg" data-ng-src="images/photo-stream.png" />
+                    </div>
+                </div>
+                <div ng-if="isAuthenticated()">
                     <div data-ng-click="logout()" data-header-entry data-label="Logout" data-align="left">
                         @include('svg.sign-out')<img data-ui-if="!Modernizr.svg" data-ng-src="images/photo-stream.png" />
                     </div>
@@ -141,7 +146,7 @@
                     </div>
                 </div>
 
-                <div data-ng-show="navigation.onEntry()">
+                <div ng-if="isAuthenticated()" data-ng-show="navigation.onEntry()">
                     <div data-header-entry data-nofollow="true" data-label="Edit" data-url="{{location.path()}}/edit" data-align="right">@include('svg.edit')<img data-ui-if="!Modernizr.svg" data-ng-src="images/edit.png" /></div>
                 </div>
 

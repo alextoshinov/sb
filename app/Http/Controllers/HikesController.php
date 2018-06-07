@@ -92,8 +92,19 @@ class HikesController extends Controller
     public function index(Request $request)
     {
         $fields = $request->input('fields');
-        $hikes = Hike::where('is_featured', true)->with('location','photos_generic','photo_facts','photo_landscape','photo_preview')->get()->toArray();
-        return response()->json($hikes);
+        $user = $this->isAuthenticated($request);
+        if ($user) {
+            $hikesArr = [];
+            $myHikes = $user->hikes;
+            foreach($myHikes as $h)
+            {
+                $hikesArr[] = Hike::where('id',$h->pivot->hike_id)->with('users','location','photos_generic','photo_facts','photo_landscape','photo_preview')->first();
+            }
+            return response()->json($hikesArr);
+        } else {
+            $hikes = Hike::where('is_featured', true)->with('location','photos_generic','photo_facts','photo_landscape','photo_preview')->get()->toArray();
+            return response()->json($hikes);
+        }
     }
 
     /**
@@ -202,7 +213,7 @@ class HikesController extends Controller
     	return response('',202)
                 ->header('Content-Type', 'application/json')
                 ->header('Hikeio-Hike-String-Id', $hike->string_id)
-                ->json(['token' => $token])
+//                ->json(['token' => $token])
             ;
     }
 
@@ -232,6 +243,25 @@ class HikesController extends Controller
             'token' => $token,
             'hike'  => $hike
         ]);
+    }
+
+    public function myHikes(Request $request)
+    {
+        $hikesArr = [];
+        $user = User::find($request['user']['sub']);
+        if ($user) {
+            $myHikes = $user->hikes;
+            foreach($myHikes as $h)
+            {
+                $hikesArr[] = Hike::where('id',$h->pivot->hike_id)->with('users')->first();
+            }
+            $token = $this->createToken($user);
+            //
+            return response()->json([
+                'token' => $token,
+                'hike'  => $hikesArr
+            ]);
+        }
     }
 
     /**
@@ -286,13 +316,21 @@ class HikesController extends Controller
                         $photo->save();
                         //
                         $large = $uuid . '-large.' . $image->getClientOriginalExtension();
-                        Image::make($hike_img_dir . $original)->resize(1200, 1200)->save($hike_img_dir . $large);
+                        Image::make($hike_img_dir . $original)->resize(1200, null, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($hike_img_dir . $large);
                         $medium = $uuid . '-medium.' . $image->getClientOriginalExtension();
-                        Image::make($hike_img_dir . $original)->resize(800, 800)->save($hike_img_dir . $medium);
+                        Image::make($hike_img_dir . $original)->resize(800, null, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($hike_img_dir . $medium);
                         $small = $uuid . '-small.' . $image->getClientOriginalExtension();
-                        Image::make($hike_img_dir . $original)->resize(400, 400)->save($hike_img_dir . $small);
+                        Image::make($hike_img_dir . $original)->resize(400, null, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($hike_img_dir . $small);
                         $tiny = $uuid . '-tiny.' . $image->getClientOriginalExtension();
-                        Image::make($hike_img_dir . $original)->resize(200, 200)->save($hike_img_dir . $tiny);
+                        Image::make($hike_img_dir . $original)->resize(200, null, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($hike_img_dir . $tiny);
                         $hike->photo_landscape_id = $photo->id;
                         $hike->save();
                         break;
@@ -306,13 +344,21 @@ class HikesController extends Controller
                         $photo->save();
                         //
                         $large = $uuid . '-large.' . $image->getClientOriginalExtension();
-                        Image::make($hike_img_dir . $original)->resize(1200, 1200)->save($hike_img_dir . $large);
+                        Image::make($hike_img_dir . $original)->resize(null, 1200, function($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($hike_img_dir . $large);
                         $medium = $uuid . '-medium.' . $image->getClientOriginalExtension();
-                        Image::make($hike_img_dir . $original)->resize(800, 800)->save($hike_img_dir . $medium);
+                        Image::make($hike_img_dir . $original)->resize(null, 800, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($hike_img_dir . $medium);
                         $small = $uuid . '-small.' . $image->getClientOriginalExtension();
-                        Image::make($hike_img_dir . $original)->resize(400, 400)->save($hike_img_dir . $small);
+                        Image::make($hike_img_dir . $original)->resize(null, 400, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($hike_img_dir . $small);
                         $tiny = $uuid . '-tiny.' . $image->getClientOriginalExtension();
-                        Image::make($hike_img_dir . $original)->resize(200, 200)->save($hike_img_dir . $tiny);
+                        Image::make($hike_img_dir . $original)->resize(null, 200, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($hike_img_dir . $tiny);
                         //
                         $thumb_medium = $uuid . '-thumb-medium.' . $image->getClientOriginalExtension();
                         Image::make($hike_img_dir . $original)->resize(800, 800)->save($hike_img_dir . $thumb_medium);
@@ -333,13 +379,21 @@ class HikesController extends Controller
                         $photo->save();
                         //
                         $large = $uuid . '-large.' . $image->getClientOriginalExtension();
-                        Image::make($hike_img_dir . $original)->resize(1200, 1200)->save($hike_img_dir . $large);
+                        Image::make($hike_img_dir . $original)->resize(null, 1200, function($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($hike_img_dir . $large);
                         $medium = $uuid . '-medium.' . $image->getClientOriginalExtension();
-                        Image::make($hike_img_dir . $original)->resize(800, 800)->save($hike_img_dir . $medium);
+                        Image::make($hike_img_dir . $original)->resize(null, 800, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($hike_img_dir . $medium);
                         $small = $uuid . '-small.' . $image->getClientOriginalExtension();
-                        Image::make($hike_img_dir . $original)->resize(400, 400)->save($hike_img_dir . $small);
+                        Image::make($hike_img_dir . $original)->resize(null, 400, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($hike_img_dir . $small);
                         $tiny = $uuid . '-tiny.' . $image->getClientOriginalExtension();
-                        Image::make($hike_img_dir . $original)->resize(200, 200)->save($hike_img_dir . $tiny);
+                        Image::make($hike_img_dir . $original)->resize(null, 200, function ($constraint) {
+                            $constraint->aspectRatio();
+                        })->save($hike_img_dir . $tiny);
                         //
                         $thumb_medium = $uuid . '-thumb-medium.' . $image->getClientOriginalExtension();
                         Image::make($hike_img_dir . $original)->resize(800, 800)->save($hike_img_dir . $thumb_medium);

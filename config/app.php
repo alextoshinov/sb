@@ -13,7 +13,7 @@ return [
     'yahoo_secret' => '',
     'twitter_key' => '',
     'twitter_secret' => '',
-
+    
     /*
     |--------------------------------------------------------------------------
     | Application Environment

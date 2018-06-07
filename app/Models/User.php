@@ -26,4 +26,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function hikes()
+    {
+        return $this->belongsToMany('App\Models\Hike', 'hikes_users')
+            ->withPivot('created_at')
+//            ->where('pending','=','Approve')
+            ->orderBy('created_at', 'desc')
+            ;
+    }
 }

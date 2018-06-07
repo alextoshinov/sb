@@ -72,6 +72,7 @@ Route::get('/img', function()
 Route::group(['prefix' => 'api/v1'], function() {
     //Hikes controller
     Route::get('hikes', 'HikesController@index');
+    Route::get('hikes/my', ['middleware' => 'auth', 'uses' => 'HikesController@myHikes']);
     Route::get('hikes/search', 'HikesController@search');
     Route::get('hikes/{hike_id}', 'HikesController@show');
     Route::post('hikes', ['middleware' => 'auth', 'uses' => 'HikesController@store']);
@@ -205,11 +206,12 @@ if (!empty($confAloowed) && $action != null) {
                     $part = 'entry';
                     break;
             }
-
+            $resource = \App\Models\Hike::where('is_featured', true)->with('location','photos_generic','photo_facts','photo_landscape','photo_preview')->get()->toJson();
             return view("layout", [
                     'html' => view('partials.'.$part),
                     'add' => view('partials.add'),
-                    'partial' => $part
+                    'partial' => $part,
+                    'preload_resource' => '<div data-preload-resource="/api/v1/hikes?fields=distance,locality,name,photo_facts,photo_landscape,photo_preview,string_id">'.$resource.'</div>'
                 ]);
         });
     }

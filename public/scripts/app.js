@@ -88,6 +88,14 @@ angular
         templateUrl: "/partials/all.html",
         title: "All Hikes - showybulgaria.com"
       }).
+      when("/my-hikes", {
+          controller: "AllController",
+          templateUrl: "/partials/all.html",
+          title: "My Hikes - showybulgaria.com",
+          resolve: {
+              loginRequired: loginRequired
+          }
+      }).
       when("/discover", {
         controller: "PhotoStreamController",
         templateUrl: "/partials/photo_stream.html",
@@ -123,6 +131,7 @@ angular
         controller: "EntryController",
         templateUrl: "/partials/entry.html",
         resolve: {
+          loginRequired: loginRequired,
           isEditing: function() { return true; }
         }
       })
@@ -155,7 +164,7 @@ angular
       $authProvider.facebook({
         clientId: '1620247318188885'
       });
-
+      //1620247318188885
       $authProvider.google({
         clientId: '594854194818-j2mjr64k0l8iao75th2phf6ba47nde0d.apps.googleusercontent.com'
       });
@@ -219,7 +228,8 @@ angular
       $http.get("/partials/photo_stream.html",  { cache: $templateCache });
       $http.get("/partials/map.html",           { cache: $templateCache });
       $http.get("/partials/search.html",        { cache: $templateCache });
-      $http.get("/partials/login-page.html",         { cache: $templateCache });
+      $http.get("/partials/login-page.html",    { cache: $templateCache });
+      $http.get("/partials/profile.html",    { cache: $templateCache });
       // $http.get("/partials/signup.html",        { cache: $templateCache });
       $http.get("/api/v1/hikes?fields=distance,is_featured,locality,name,photo_facts,photo_landscape,photo_preview,string_id", { cache: resourceCache} );
 //      $http.get("/data/index.json", { cache: resourceCache} );
